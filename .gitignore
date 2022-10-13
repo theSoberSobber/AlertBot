@@ -1,0 +1,6 @@
+/.history
+/node_modules
+sesi.json
+yarn.lock
+.vercel
+package-lock.json

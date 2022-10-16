@@ -27,36 +27,36 @@ ws.ev.on('connection.update', async (update) => {
 
 const { checkAndReturn } = require('./features/updates/getUpdates.js');
 const pathOfDump = "./data.json";
-
+const map = require('./features/updates/map.js');
+// handles user interaction, actual checking is done by checkAndReturn from getUpdates()
+// checkAndReturn returns updates list if that college has any
+// and returns 0 if that college has none
+// so main iterates over map and calls checkAndReturn for all and handles the subsequent interaction then
 const main = async () => {
-    const result = await checkAndReturn(pathOfDump);
-    // fetch all current group(s) asscoiated with AlertBot
-    // see https://github.com/theSoberSobber/Groups-AlertBot for more info on how Dynamic groups are generated!
-    const res = await fetch('https://alert-bot.vercel.app/groupIds');
-    // console.log(res.body);
-    let groupArr = await res.text();
-    groupArr = await JSON.parse(groupArr);
-    groupArr = groupArr.groupIds;
-    console.log(groupArr);
-    if (result) {
-        for (const i of result){
-            for(const jid of groupArr){
-                // implement better way using axios headers and content-type['application/pdf'] checking
-                if(i.link.slice(-4) == ".pdf"){
-                    await ws.sendFile(jid, i.link, i.innerText);
-                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
-                } else if (i.link.slice(-4) == ".jpg") {
-                    await ws.sendImage(jid, i.link, i.innerText);
-                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
-                } else {
-                    await ws.sendMessage(jid, { text: `${i.innerText}, Link: ${i.link}` })
-                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+    for(const name in map){
+        const result = await checkAndReturn(pathOfDump, name);
+        // fetch all current group(s) associated with AlertBot
+        // see https://github.com/theSoberSobber/Groups-AlertBot for more info on how Dynamic groups are generated!
+        const res = await fetch(`https://alert-bot.vercel.app/groupIds`);
+        // console.log(res.body);
+        let groupArr = await res.text();
+        groupArr = await JSON.parse(groupArr);
+        // for this the names in map must be the same as the one's used to create group links
+        groupArr = groupArr[name];
+        console.log(groupArr);
+
+        // now handle user interaction
+        if (result) {
+            for (const i of result){
+                for(const jid of groupArr){
+                    await ws.sendGeneralLinks(jid, i.link, i.innerText);
+                    await ws.sendMessage(jid, { text: `Brought to you by ${base_uri}` });
                 }
             }
+            return;
         }
         return;
     }
-    return;
 }
 
 // call main every 15 seconds

@@ -1,41 +1,28 @@
 #!/usr/bin/node
-
-const { load } = require('cheerio');
+const map = require('./map.js');
 const { readFile, writeFile } = require('fs/promises');
 // const fetch = require("node-fetch");
 
-const manitParser = async () => {
-    var options = {
-        'method': 'GET',
-        'url': 'http://www.manit.ac.in/',
-    };
+async function checkAndReturn(pathOfDump, name) {
+    // the name and parser are coming from the map
+    // console.log(map[name]);
+    const gotTest = await map[name]();
+    // console.log(gotTest);
+    let file = await readFile(pathOfDump, "utf-8");
 
-    var list = [];
+    let toTest = await JSON.parse(file);
+    toTest = toTest[name];
+    // for some reason toTest ke parameters are inaccesible, is it converting to JSON?
+    // const testJson =  {
+    //     "a": ["b", "c"]
+    // }
+    // console.log(testJson);
+    // console.log(toTest);
+    // const c = "manit";
+    // console.log(toTest[c]);
 
-    const res = await fetch(options.url)
-
-    const html = await res.text();
-
-    const $ = load(html);
-
-    $('div[class="modal-body quick"]').find('div > p > a').each(function (_index, element) {
-        list.push({
-            innerText: $(element).text(),
-            link: $(element).attr('href'),
-        })
-    });
-    return list;
-}
-
-async function checkAndReturn(pathOfDump) {
-    const gotTest = await manitParser();
-
-    const file = await readFile(pathOfDump, "utf-8")
-
-    const toTest = JSON.parse(file);
-
-    const diff = []
-
+    const diff = [];
+    
     for (const e of gotTest)
         if (!(toTest.filter(item => item.link === e.link).length))
             diff.push(e);
@@ -43,7 +30,10 @@ async function checkAndReturn(pathOfDump) {
     if (!diff.length)
         return 0;
 
-    await writeFile(pathOfDump, JSON.stringify(gotTest), "utf-8")
+    file[name] = gotTest;
+    console.log(file);
+    await writeFile(pathOfDump, file, "utf-8");
+    console.log('I wrote data.json')
 
     return diff;
 }
@@ -53,5 +43,5 @@ module.exports = {
 }
 
 if (require.main === module) {
-    checkAndReturn("../data.json");
+    checkAndReturn("C:/Users/Pavit Chhabra/Desktop/Chapter-BOTs/AlertBot/data.json", "manit");
 }

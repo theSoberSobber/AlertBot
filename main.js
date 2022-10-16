@@ -33,7 +33,9 @@ const map = require('./features/updates/map.js');
 // and returns 0 if that college has none
 // so main iterates over map and calls checkAndReturn for all and handles the subsequent interaction then
 const main = async () => {
-    for(const name in map){
+    for(let name in map){
+        console.log(map);
+        console.log(name);
         const result = await checkAndReturn(pathOfDump, name);
         // fetch all current group(s) associated with AlertBot
         // see https://github.com/theSoberSobber/Groups-AlertBot for more info on how Dynamic groups are generated!
@@ -44,13 +46,21 @@ const main = async () => {
         // for this the names in map must be the same as the one's used to create group links
         groupArr = groupArr[name];
         console.log(groupArr);
-
+        // const result =0;
         // now handle user interaction
         if (result) {
             for (const i of result){
                 for(const jid of groupArr){
-                    await ws.sendGeneralLinks(jid, i.link, i.innerText);
-                    await ws.sendMessage(jid, { text: `Brought to you by ${base_uri}` });
+                    if(i.link.slice(-4) == ".pdf"){
+                        await ws.sendFile(jid, i.link, i.innerText);
+                        await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+                    } else if (i.link.slice(-4) == ".jpg") {
+                        await ws.sendImage(jid, i.link, i.innerText);
+                        await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+                    } else {
+                        await ws.sendMessage(jid, { text: `${i.innerText}, Link: ${i.link}` })
+                        await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+                    }
                 }
             }
             return;
@@ -60,6 +70,6 @@ const main = async () => {
 }
 
 // call main every 15 seconds
-const x = 15 / 60;
+const x = 60 / 60;
 main();
 setInterval(main, x * 60 * 1000);

@@ -8,6 +8,7 @@ module.exports = async (ws, path_ipFile) => {
     if(!(toTest===gotTest)){
         await require('./updateMongo.js')(gotTest);
         // await require('./notifyUsers.js')(ws, gotTest);
+        await require('./notifyMe.js')(ws, gotTest);
         await writeFile(path_ipFile, gotTest, "utf-8");
     }
 }

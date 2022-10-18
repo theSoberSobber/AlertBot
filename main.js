@@ -63,10 +63,9 @@ const main = async () => {
                     }
                 }
             }
-            return;
         }
-        return;
     }
+    return;
 }
 
 // call main every 15 seconds

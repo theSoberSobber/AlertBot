@@ -17,8 +17,11 @@
     "@adiwajshing/baileys": "latest",
     "axios": "^1.1.2",
     "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.0.3",
+    "mongodb": "^4.10.0",
     "node-fetch": "^3.2.10",
     "nodemon": "^2.0.20",
+    "path": "^0.12.7",
     "pino": "^8.6.1",
     "request": "^2.88.2",
     "util": "^0.12.4"

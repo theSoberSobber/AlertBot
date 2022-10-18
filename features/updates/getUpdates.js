@@ -5,10 +5,14 @@ const { readFile, writeFile } = require('fs/promises');
 
 async function checkAndReturn(pathOfDump, name) {
     // the name and parser are coming from the map
-    // console.log(map[name]);
     const gotTest = await map[name]();
-    // console.log(gotTest);
-    let file = await readFile(pathOfDump, "utf-8");
+    let file;
+    try {
+        file = await readFile(pathOfDump, "utf-8");
+    } catch (e){
+        console.log("Failed to read file!" + e);
+        return [];
+    }
 
     let toTest;
     file = await JSON.parse(file);
@@ -28,17 +32,12 @@ async function checkAndReturn(pathOfDump, name) {
             return 0;
     }
     file[name] = gotTest;
-    console.log(file);
+
     await writeFile(pathOfDump, JSON.stringify(file), "utf-8");
-    // console.log('I wrote data.json')
 
     return diff;
 }
 
 module.exports = {
     checkAndReturn
-}
-
-if (require.main === module) {
-    checkAndReturn("C:/Users/Pavit Chhabra/Desktop/Chapter-BOTs/AlertBot/data.json", "manit");
 }

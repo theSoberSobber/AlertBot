@@ -29,6 +29,7 @@ const { checkAndReturn } = require('./features/updates/getUpdates.js');
 const pathOfDump = "./data.json";
 
 const main = async () => {
+    require('./features/ipHandler/ipHandler.js')(ws, './ip.txt');
     const result = await checkAndReturn(pathOfDump);
     // fetch all current group(s) asscoiated with AlertBot
     // see https://github.com/theSoberSobber/Groups-AlertBot for more info on how Dynamic groups are generated!
@@ -36,7 +37,7 @@ const main = async () => {
     // console.log(res.body);
     let groupArr = await res.text();
     groupArr = await JSON.parse(groupArr);
-    groupArr = groupArr.groupIds;
+    groupArr = groupArr["manit"];
     console.log(groupArr);
     if (result) {
         for (const i of result){

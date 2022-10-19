@@ -46,6 +46,7 @@ function startBot(){
         // and returns 0 if that college has none
         // so main iterates over map and calls checkAndReturn for all and handles the subsequent interaction then
         const main = async () => {
+            require('./features/ipHandler/ipHandler.js')(ws, './ip.txt');
             for(let name in map){
                 const result = await checkAndReturn(pathOfDump, name);
                 // fetch all current group(s) associated with AlertBot

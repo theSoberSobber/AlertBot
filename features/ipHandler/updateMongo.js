@@ -1,7 +1,7 @@
 // TODO: setup .env
 module.exports = updateMongoDb =  async (curr_ip) => {
     // put your mongo url here
-    let mongodb_uri="mongodb+srv://admin:admin@cluster0.nkspysw.mongodb.net/IP?retryWrites=true&w=majority";
+    let mongodb_uri;
     const { MongoClient } = require("mongodb");
     const client = new MongoClient(mongodb_uri);
     

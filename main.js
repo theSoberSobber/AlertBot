@@ -63,30 +63,29 @@ function startBot(){
                     groupArr = await JSON.parse(groupArr);
                     continue;
 		        }                
-		// for this the names in map must be the same as the one's used to create group links
+		        // for this the names in map must be the same as the one's used to create group links
                 groupArr = groupArr[name];
                 // const result =0;
                 // now handle user interaction
                 if (result) {
                     for (const i of result){
                         for(const jid of groupArr){
-                            // try {
-                            //     if(i.link.slice(-4) == ".pdf"){
-                            //         await ws.sendFile(jid, i.link, i.innerText);
-                            //         await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
-                            //     } else if (i.link.slice(-4) == ".jpg") {
-                            //         await ws.sendImage(jid, i.link, i.innerText);
-                            //         await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
-                            //     } else {
-                            //         await ws.sendMessage(jid, { text: `${i.innerText}, Link: ${i.link}` })
-                            //         await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
-                            //     }
-                            // } catch (e) {
-                            //     console.log("Error sending result data" + e)
-                            //     console.log("Restarting!")
-                            //     startBot();
-                            // }
-                            console.log("ok");
+                            try {
+                                if(i.link.slice(-4) == ".pdf"){
+                                    await ws.sendFile(jid, i.link, i.innerText);
+                                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+                                } else if (i.link.slice(-4) == ".jpg") {
+                                    await ws.sendImage(jid, i.link, i.innerText);
+                                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+                                } else {
+                                    await ws.sendMessage(jid, { text: `${i.innerText}, Link: ${i.link}` })
+                                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+                                }
+                            } catch (e) {
+                                console.log("Error sending result data" + e)
+                                console.log("Restarting!")
+                                startBot();
+                            }
                         }
                     }
                 }

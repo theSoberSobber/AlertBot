@@ -13,6 +13,7 @@
 
 ---
 ### Deployment
+- Please refer to [this](./FUTURE.md) document for the new architecture proposal.
 - Vercel doesn't support websockets otherwise all functions are pretty RESTful.
 - for deplying https://github.com/theSoberSobber/Groups-AlertBot can be clubbed into one project since they don't have any conflicting parts. Just include the group.js and info.json file in the features folder then import and call it in main.js after the 'connection open' event has occured.
 ---

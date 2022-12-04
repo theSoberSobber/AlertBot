@@ -2,6 +2,7 @@ const { default: makeWASocket, useSingleFileAuthState, jidNormalizedUser } = req
 const { state } = useSingleFileAuthState('./sesi.json');
 
 const pino = require('pino');
+const { readFile } = require('fs/promises');
 
 function startBot(){
     
@@ -53,30 +54,39 @@ function startBot(){
                 // see https://github.com/theSoberSobber/Groups-AlertBot for more info on how Dynamic groups are generated!
                 const res = await fetch(`https://alert-bot.vercel.app/groupIds`);
                 let groupArr = await res.text();
-                groupArr = await JSON.parse(groupArr);
-                // for this the names in map must be the same as the one's used to create group links
+                try {
+			        groupArr = await JSON.parse(groupArr);
+		        } catch(err) {
+                    // fall back on a old cached info.json
+                    // TODO : Build Mechanism to cache info.json
+			        groupArr = await readFile("./info.json");
+                    groupArr = await JSON.parse(groupArr);
+                    continue;
+		        }                
+		// for this the names in map must be the same as the one's used to create group links
                 groupArr = groupArr[name];
                 // const result =0;
                 // now handle user interaction
                 if (result) {
                     for (const i of result){
                         for(const jid of groupArr){
-                            try {
-                                if(i.link.slice(-4) == ".pdf"){
-                                    await ws.sendFile(jid, i.link, i.innerText);
-                                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
-                                } else if (i.link.slice(-4) == ".jpg") {
-                                    await ws.sendImage(jid, i.link, i.innerText);
-                                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
-                                } else {
-                                    await ws.sendMessage(jid, { text: `${i.innerText}, Link: ${i.link}` })
-                                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
-                                }
-                            } catch (e) {
-                                console.log("Error sending result data" + e)
-                                console.log("Restarting!")
-                                startBot();
-                            }
+                            // try {
+                            //     if(i.link.slice(-4) == ".pdf"){
+                            //         await ws.sendFile(jid, i.link, i.innerText);
+                            //         await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+                            //     } else if (i.link.slice(-4) == ".jpg") {
+                            //         await ws.sendImage(jid, i.link, i.innerText);
+                            //         await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+                            //     } else {
+                            //         await ws.sendMessage(jid, { text: `${i.innerText}, Link: ${i.link}` })
+                            //         await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+                            //     }
+                            // } catch (e) {
+                            //     console.log("Error sending result data" + e)
+                            //     console.log("Restarting!")
+                            //     startBot();
+                            // }
+                            console.log("ok");
                         }
                     }
                 }

@@ -85,8 +85,9 @@ async function startBot(){
                 const result = await checkAndReturn(pathOfDump, name);
                 // fetch all current group(s) associated with AlertBot
                 // see https://github.com/theSoberSobber/Groups-AlertBot for more info on how Dynamic groups are generated!
-                const res = await fetch(`https://alert-bot.vercel.app/groupIds`);
-                let groupArr = await res.text();
+                // const res = await fetch(`https://alert-bot.vercel.app/groupIds`);
+                // let groupArr = await res.text();
+                let groupArr =  await readFile("./groups.json");
                 try {
 			        groupArr = await JSON.parse(groupArr);
 		        } catch(err) {

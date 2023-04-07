@@ -4,7 +4,7 @@
   "description": "An AlertBot for colleges!",
   "main": "main.js",
   "scripts": {
-    "production": "node main.js",
+    "start": "node main.js",
     "dev": "nodemon main.js"
   },
   "repository": {
@@ -21,9 +21,11 @@
     "mongodb": "^4.10.0",
     "node-fetch": "^3.2.10",
     "nodemon": "^2.0.20",
+    "npm": "^9.6.4",
     "path": "^0.12.7",
     "pino": "^8.6.1",
     "request": "^2.88.2",
-    "util": "^0.12.4"
+    "util": "^0.12.4",
+    "yarn": "^1.22.19"
   }
 }

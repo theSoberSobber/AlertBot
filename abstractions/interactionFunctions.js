@@ -4,20 +4,20 @@
 // _____________________________________________________________
 const { getBuffer } = require('./getBuffer.js')
 module.exports = iFunctions = async (ws) => {
-    const reply = (input_text) => {
-        ws.sendMessage(messageObj.key.remoteJid, { text: input_text })
+    const reply = async (input_text) => {
+        await ws.sendMessage(messageObj.key.remoteJid, { text: input_text })
     }
     ws.reply = reply;
 
     // untested though
-    ws.sendButtonMsg = (jid, text = '', footer = '', but = []) => {
+    ws.sendButtonMsg = async (jid, text = '', footer = '', but = []) => {
         let templateButtons = but
         var templateMessage = {
             text: text,
             footer: footer,
             templateButtons: templateButtons
         }
-        ws.sendMessage(jid, templateMessage)
+        await ws.sendMessage(jid, templateMessage)
     }
 
     ws.sendFile = async (jid, url, caption) => {
@@ -26,7 +26,7 @@ module.exports = iFunctions = async (ws) => {
             mimetype: 'application/pdf',
             caption: caption
         }
-        ws.sendMessage(jid, fileObj);
+	await ws.sendMessage(jid, fileObj);
     }
 
     ws.sendImage = async (jid, url, caption) => {
@@ -34,7 +34,7 @@ module.exports = iFunctions = async (ws) => {
             image: await getBuffer(url),
             caption: caption
         }
-        ws.sendMessage(jid, fileObj);
+        await ws.sendMessage(jid, fileObj);
     }
     //________________________________________________________________________________________
 }

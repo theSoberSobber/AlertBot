@@ -7,6 +7,7 @@ const { checkAndReturn } = require('./features/updates/getUpdates.js');
 const pathOfDump = "./data.json";
 const map = require('./features/updates/map.js');
 
+const { getBuffer } = require('./abstractions/getBuffer.js');
 
 async function startBot(){
 
@@ -70,14 +71,11 @@ async function startBot(){
         // checkAndReturn returns updates list if that college has any
         // and returns 0 if that college has none
         // so main iterates over map and calls checkAndReturn for all and handles the subsequent interaction then
-	
-	
+
 	const main = async() => {
             // require('./features/ipHandler/ipHandler.js')(ws, './ip.txt');
             for(let name in map){
                 const result = await checkAndReturn(pathOfDump, name);
-		console.log("============I AM FROM MAIN.JS=================");
-		console.log(result);
                 // fetch all current group(s) associated with AlertBot
                 // see https://github.com/theSoberSobber/Groups-AlertBot for more info on how Dynamic groups are generated!
                 const res = await fetch(`https://alert-bot.vercel.app/groupIds`);
@@ -95,19 +93,17 @@ async function startBot(){
                 groupArr = groupArr[name];
                 // const result =0;
                 // now handle user interaction
-                if (result) {
-                    for (const i of result){
-                        for(const jid of groupArr){
-                            try {
+                if (result.length!=0){
+                    for(const jid of groupArr){
+                        for (const i of result){
+                           console.log(i.link);
+			   try {
                                 if(i.link.slice(-4) == ".pdf"){
 				    await ws.sendFile(jid, i.link, i.innerText);
-				    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
                                 } else if (i.link.slice(-4) == ".jpg") {
                                     await ws.sendImage(jid, i.link, i.innerText);
-                                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
                                 } else {
                                     await ws.sendMessage(jid, { text: `${i.innerText}, Link: ${i.link}` })
-                                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
                                 }
                             } catch (e) {
                                 console.log("Error sending result data" + e)
@@ -115,6 +111,7 @@ async function startBot(){
                                 startBot();
                             }
                         }
+			await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
                     }
                 }
             }
@@ -132,4 +129,3 @@ async function startBot(){
 }
 
 startBot();
-0

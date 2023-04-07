@@ -13,8 +13,6 @@ module.exports = async () => {
     const $ = await load(html);
     $('div[class="modal-body quick"]').find('div > p > a').each(function (_index, element) {
 	const optimisedLink = (($(element).attr('href').startsWith('http'))) ? $(element).attr('href') : (base + $(element).attr('href'));
-	//const optimisedLink = (!($(element).attr('href').startsWith('http'))) ? $(element).attr('href') : "day in the life";
-	console.log(optimisedLink);
 	list.push({
             innerText: $(element).text(),
             link: optimisedLink,

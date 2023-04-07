@@ -7,8 +7,6 @@ const { checkAndReturn } = require('./features/updates/getUpdates.js');
 const pathOfDump = "./data.json";
 const map = require('./features/updates/map.js');
 
-const { getBuffer } = require('./abstractions/getBuffer.js');
-
 async function startBot(){
 
     const { state, saveCreds} = await useMultiFileAuthState('sesi');
@@ -62,6 +60,15 @@ async function startBot(){
             } catch (e) {
                 console.log('Restarting!')
                 startBot();
+            }
+        })
+        // _______________________________________________________________
+
+        ws.ev.on('messages.upsert', async chatUpdate => {
+            try {
+                require('./features/commands/handleCommands.js')(ws, chatUpdate);
+            } catch (err) {
+                console.log(err)
             }
         })
 

@@ -4,7 +4,7 @@
   "description": "An AlertBot for colleges!",
   "main": "main.js",
   "scripts": {
-    "production": "node main.js",
+    "start": "node main.js",
     "dev": "nodemon main.js"
   },
   "repository": {

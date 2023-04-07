@@ -2,6 +2,7 @@
 // const manitParser = require('./parsers/manitParser.js');
 
 // ______________________________________________
+
 module.exports = {
     // add your colleges name here
     // IMPORTANT - please add the same name that you used while creating your AlertBot groups

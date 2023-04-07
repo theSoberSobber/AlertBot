@@ -1,6 +1,6 @@
 /.history
 /node_modules
-sesi.json
+/sesi
 yarn.lock
 .vercel
 package-lock.json

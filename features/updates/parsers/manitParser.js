@@ -3,17 +3,21 @@
 // ___________________________________
 // returns data[manit] list of updates
 const { load } = require('cheerio');
+const base = 'http://www.manit.ac.in';
 
 module.exports = async () => {
     var list = [];
 
     const res = await fetch('http://www.manit.ac.in/')
     const html = await res.text();
-    const $ = load(html);
+    const $ = await load(html);
     $('div[class="modal-body quick"]').find('div > p > a').each(function (_index, element) {
-        list.push({
+	const optimisedLink = (($(element).attr('href').startsWith('http'))) ? $(element).attr('href') : (base + $(element).attr('href'));
+	//const optimisedLink = (!($(element).attr('href').startsWith('http'))) ? $(element).attr('href') : "day in the life";
+	console.log(optimisedLink);
+	list.push({
             innerText: $(element).text(),
-            link: $(element).attr('href'),
+            link: optimisedLink,
         })
     });
     return list;

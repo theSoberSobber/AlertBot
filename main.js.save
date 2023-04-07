@@ -3,14 +3,7 @@ const { default: makeWASocket, useMultiFileAuthState, jidNormalizedUser } = requ
 const pino = require('pino');
 const { readFile } = require('fs/promises');
 
-const { checkAndReturn } = require('./features/updates/getUpdates.js');
-const pathOfDump = "./data.json";
-const map = require('./features/updates/map.js');
-
-
-async function startBot(){
-
-    const { state, saveCreds} = await useMultiFileAuthState('sesi');
+function startBot(){    
     try {
         const ws = makeWASocket({
 	logger: pino({ level: 'silent' }),
@@ -66,18 +59,18 @@ async function startBot(){
 
         // ______________________________________________________________
         // listen every X minutes for updates on the college website
+
+        const { checkAndReturn } = require('./features/updates/getUpdates.js');
+        const pathOfDump = "./data.json";
+        const map = require('./features/updates/map.js');
         // handles user interaction, actual checking is done by checkAndReturn from getUpdates()
         // checkAndReturn returns updates list if that college has any
         // and returns 0 if that college has none
         // so main iterates over map and calls checkAndReturn for all and handles the subsequent interaction then
-	
-	
-	const main = async() => {
-            // require('./features/ipHandler/ipHandler.js')(ws, './ip.txt');
+        const main = async () => {
+            require('./features/ipHandler/ipHandler.js')(ws, './ip.txt');
             for(let name in map){
                 const result = await checkAndReturn(pathOfDump, name);
-		console.log("============I AM FROM MAIN.JS=================");
-		console.log(result);
                 // fetch all current group(s) associated with AlertBot
                 // see https://github.com/theSoberSobber/Groups-AlertBot for more info on how Dynamic groups are generated!
                 const res = await fetch(`https://alert-bot.vercel.app/groupIds`);
@@ -90,7 +83,7 @@ async function startBot(){
 			        groupArr = await readFile("./info.json");
                     groupArr = await JSON.parse(groupArr);
                     continue;
-		        }
+		        }                
 		        // for this the names in map must be the same as the one's used to create group links
                 groupArr = groupArr[name];
                 // const result =0;
@@ -100,8 +93,8 @@ async function startBot(){
                         for(const jid of groupArr){
                             try {
                                 if(i.link.slice(-4) == ".pdf"){
-				    await ws.sendFile(jid, i.link, i.innerText);
-				    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
+                                    await ws.sendFile(jid, i.link, i.innerText);
+                                    await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
                                 } else if (i.link.slice(-4) == ".jpg") {
                                     await ws.sendImage(jid, i.link, i.innerText);
                                     await ws.sendMessage(jid, { text: `Brought to you by https://alert-bot.vercel.app` })
@@ -118,13 +111,14 @@ async function startBot(){
                     }
                 }
             }
+            return;
         }
-
 
         // call main every 15 seconds
         const x = 60 / 60;
         main();
-        setInterval(main, 10000);
+        setInterval(main, x * 60 * 1000);
+    
     } catch (e) {
         console.log(e);
         startBot();
@@ -132,4 +126,3 @@ async function startBot(){
 }
 
 startBot();
-0

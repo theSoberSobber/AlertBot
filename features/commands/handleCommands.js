@@ -29,6 +29,12 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
         grpId = messageObj.key.remoteJid;
         senderJid = messageObj.key.participant;
     }
+    console.log(messageObj);
+    if(messageObj.messageStubParameters){
+        console.log(grpId);
+        // await replyM(grpId, "Alert Bot has been added to this group!");
+        return;
+    }
     messageObj=messageObj.message;
     // ________________________________________________
     // API ENDS HERE

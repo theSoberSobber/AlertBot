@@ -43,7 +43,7 @@ async function startBot(){
     	}
   	return message;
 	},
-	browser: ["Ichigo Kurosaki", "Safari", "3.0"],
+	browser: ["AlertBot", "AlertBot", "0.9"],
 	auth: state
 	});
         ws.ev.on('creds.update', saveCreds);

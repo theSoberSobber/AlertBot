@@ -11,9 +11,16 @@ async function startBot(){
 
     const { state, saveCreds} = await useMultiFileAuthState('sesi');
     try {
+        const tempStore = { }
+        const getMessage = async (key) => {
+            const {id} = key
+            console.log('Resending', id)
+            return tempStore[id]?.message
+        };          
         const ws = makeWASocket({
 	logger: pino({ level: 'silent' }),
 	printQRInTerminal: true,
+    getMessage,
 	//work tempelate message 
 	patchMessageBeforeSending: (message) => {
 	const requiresPatch = !!(

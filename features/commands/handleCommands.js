@@ -1,6 +1,5 @@
 const prefix = "/";
-const { writeFile } = require('fs');
-const { readFile } = require('fs/promises');
+const {writeFile, readFile} =  require("fs/promises");
 
 const checkAndParse = async (body) => {
     if (body[0]==prefix){
@@ -35,15 +34,13 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
     // API ENDS HERE
     // ________________________________________________
     if(!fromMe){
-        console.log(messageObj);
+
         if(messageObj.conversation){
             // normal text
             let body = messageObj.conversation.toLowerCase();
-            if(await checkAndParse(body)){
+            if(await checkAndParse(body) && !isGrp){
                 const {command, args} = await checkAndParse(body);
-                if(!isGrp){
-                    console.log("DM Command", command, args);
-                    switch (command){
+                switch (command){
                     case "ping":
                         await replyM(senderJid, "pong.");
                         break;
@@ -51,97 +48,68 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
                         const ip = await getIp();
                         await replyM(senderJid, `ssh u0_a343@${ip} -p 8022`);
                         break;
-                    case "addJid":
-                        // "/register manit {jid}"
-                        await replyM(senderJid, "adding group to DB");
-                        let groupArr =  await readFile("./groups.json");
-                        for(i in groupArr) if(i==args[0]) groupArr[i].push(args[1]);
-                        await writeFile("./groups.json", JSON.stringify(groupArr));
-                        await replyM(senderJid, "added");
-                        break;
                     default :
                         await replyM(senderJid, "not a valid command.");
                         break;
-                    }
-                    printQRInTerminal: true,
-
-                } else {
-                    console.log("Group Command", command, args);
-                    switch(command){
-                        case "ping":
+                }
+            }
+            if(await checkAndParse(body) && isGrp){
+                const {command, args} = await checkAndParse(body);
+                switch(command){
+                    case "ping":
                         await replyM(grpId, "pong.");
+                        break;
+                    case "debug":
+                        if(args[0]=="jid") await replyM(grpId, grpId);
+                        else await replyM(grpId, "too few or invalid argument(s).");
+                        break;
+                    case "setup":
+                        let f=0;
+                        if(args[0]===undefined){
+                            console.log("bhai pura de", grpId);
+                            await replyM(grpId, "too few or invalid argument(s).");
                             break;
-                        case "debug":
-                            if(args[0]=="jid") await replyM(senderJid, senderJid);
-                            else await replyM(senderJid, "atleast 1 parameter required");
-                            break;
-                        case "setup":
-                            // "/register manit"
-                            await replyM(senderJid, "starting auto setup...");
-                            let groupArr =  await readFile("./groups.json");
-                            for(i in groupArr) if(i==args[0]) groupArr[i].push(senderJid);
-                            await writeFile("./groups.json", JSON.stringify(groupArr));
-                            await replyM(senderJid, "alertbot auto registration complete.");
-                            break;
-                    }
+                        }
+                        const groupJson = await JSON.parse(await readFile("./groups.json"));
+                        for(let college in groupJson){
+                            if(college==args[0]){
+                                for(let i=0; i<groupJson[college].length; i++){
+                                    if(groupJson[college][i]==grpId){
+                                        await replyM(grpId, "group already registered.");
+                                        f=1;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if(f) break;
+                        groupJson[args[0]] = [];
+                        groupJson[args[0]].push(grpId);
+                        await writeFile("./groups.json", JSON.stringify(groupJson));
+                        await replyM(grpId, `group has been registered.`);
+                        break;
+                    case "current":
+                        await replyM(grpId, await readFile("./groups.json"));
+                        break;
+                    default :
+                        await replyM(grpId, "not a valid command.");
+                        break;
                 }
             }
         }
         if(messageObj.extendedTextMessage){
             // extendedTextMessage
             let body =  messageObj.extendedTextMessage.text.toLowerCase();
-            if(await checkAndParse(body)){
-                const {command, args} = await checkAndParse(body);
-                if(!isGrp){
-                    console.log("DM Command", command, args);
-                    switch (command){
-                    case "ping":
-                        await replyM(senderJid, "pong.");
-                        break;
-                    case "ssh":
-                        const ip = await getIp();
-                        await replyM(senderJid, `ssh u0_a343@${ip} -p 8022`);
-                        break;
-                    case "addJid":
-                        // "/register manit {jid}"
-                        await replyM(senderJid, "adding group to DB");
-                        let groupArr =  await readFile("./groups.json");
-                        for(i in groupArr) if(i==args[0]) groupArr[i].push(args[1]);
-                        await writeFile("./groups.json", JSON.stringify(groupArr));
-                        await replyM(senderJid, "added");
-                        break;
-                    default :
-                        await replyM(senderJid, "not a valid command.");
-                        break;
-                    }
-                } else {
-                    console.log("Group Command", command, args);
-                    switch(command){
-                        case "debug":
-                            if(args[0]=="jid") await replyM(grpId, senderJid);
-                            else await replyM(grpId, "insufficient or invalid parameters.");
-                            break;
-                        case "setup":
-                            // "/register manit"
-                            await replyM(grpId, "starting auto setup...");
-                            let groupArr =  await readFile("./groups.json");
-                            for(i in groupArr) if(i==args[0]) groupArr[i].push(senderJid);
-                            await writeFile("./groups.json", JSON.stringify(groupArr));
-                            await replyM(grpId, "alertbot auto registration complete.");
-                            break;
-                    }
-                }
-            }
         }
         if(messageObj.videoMessage){
             // video message
             let body = messageObj.videoMessage.caption.toLowerCase();
-            await replyM(senderJid, "please send a normal text message.");
         }
         if(messageObj.imageMessage){
             // image message
             let body = messageObj.imageMessage.caption.toLowerCase();
-            await replyM(senderJid, "please send a normal text message.");
         }
     }
 }
+
+

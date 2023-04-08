@@ -13,7 +13,7 @@ async function startBot(){
     try {
         const ws = makeWASocket({
 	logger: pino({ level: 'silent' }),
-	//printQRInTerminal: true,
+	printQRInTerminal: true,
 	//work tempelate message 
 	patchMessageBeforeSending: (message) => {
 	const requiresPatch = !!(
@@ -38,7 +38,8 @@ async function startBot(){
 	},
 	browser: ["Ichigo Kurosaki", "Safari", "3.0"],
 	auth: state
-	})
+	});
+        ws.ev.on('creds.update', saveCreds);
         require('./abstractions/interactionFunctions.js')(ws);
         require('./AlertBot.config.js');
         const debug_jid = `${countryCode}${debugNum}@s.whatsapp.net`;

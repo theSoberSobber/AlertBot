@@ -63,9 +63,14 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
                         await replyM(senderJid, "not a valid command.");
                         break;
                     }
+                    printQRInTerminal: true,
+
                 } else {
                     console.log("Group Command", command, args);
                     switch(command){
+                        case "ping":
+                        await replyM(grpId, "pong.");
+                            break;
                         case "debug":
                             if(args[0]=="jid") await replyM(senderJid, senderJid);
                             else await replyM(senderJid, "atleast 1 parameter required");

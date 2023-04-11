@@ -110,6 +110,7 @@ async function startBot() {
         }
         // for this the names in map must be the same as the one's used to create group links
         groupArr = groupArr[name];
+        console.log(groupArr);
         // const result =0;
         // now handle user interaction
         if (result.length != 0) {

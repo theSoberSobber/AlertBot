@@ -25,4 +25,4 @@ if(require.main=== module){
     (async ()=> {
         console.log(await require("./iitgParser.js")());
     })();
-}
+};

@@ -115,21 +115,23 @@ async function startBot() {
         if (result.length != 0) {
           for (const jid of groupArr) {
             for (const i of result) {
-              console.log(i.link);
-              try {
-                if (i.link.slice(-4) == ".pdf") {
-                  await ws.sendFile(jid, i.link, i.innerText);
-                } else if (i.link.slice(-4) == ".jpg") {
-                  await ws.sendImage(jid, i.link, i.innerText);
-                } else {
-                  await ws.sendMessage(jid, {
-                    text: `${i.innerText}, Link: ${i.link}`,
-                  });
+              console.log(i.linkArr);
+              for(let j=0; j<linkArr.length; j++){
+                try {
+                  if (i.linkArr[j].slice(-4) == ".pdf") {
+                    await ws.sendFile(jid, i.linkArr[j], i.innerText);
+                  } else if (i.linkArr[j].slice(-4) == ".jpg") {
+                    await ws.sendImage(jid, i.linkArr[j], i.innerText);
+                  } else {
+                    await ws.sendMessage(jid, {
+                      text: `${i.innerText}, Link: ${i.linkArr[j]}`,
+                    });
+                  }
+                } catch (e) {
+                  console.log("Error sending result data" + e);
+                  console.log("Restarting!");
+                  startBot();
                 }
-              } catch (e) {
-                console.log("Error sending result data" + e);
-                console.log("Restarting!");
-                startBot();
               }
             }
             await ws.sendMessage(jid, {

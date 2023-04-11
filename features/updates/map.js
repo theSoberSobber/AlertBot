@@ -11,5 +11,4 @@ module.exports = {
     "manit": require('./parsers/manitParser.js'),
     "iitg": require('./parsers/iitgParser.js'),
     "iiitbh": require('./parsers/iiitbhParser.js')
-    // "dtu": require('./parsers/dtuParser.js')
 }

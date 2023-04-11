@@ -7,6 +7,8 @@ const base = 'https://www.iiitbhopal.ac.in/media/notice';
 
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
+// needs a rewrite to be able to group links in linkArr, nsut one also needs
+
 module.exports = async () => {
     var list = [];
 
@@ -28,7 +30,7 @@ module.exports = async () => {
             if(j%4==3){
                 list.push({
                     innerText: res[i]["Title"],
-                    link: link,
+                    linkArr: [link],
                 });
                 link="";
             }

@@ -15,7 +15,7 @@ module.exports = async () => {
         const optimisedLink = (($(element).attr('href').startsWith('http'))) ? $(element).attr('href') : (base + $(element).attr('href'));
         list.push({
             innerText: $(element).text(),
-            link: optimisedLink,
+            linkArr: [optimisedLink],
         });
     });
     return list;

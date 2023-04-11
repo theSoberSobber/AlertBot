@@ -1,5 +1,6 @@
 // all parsers are supposed to return list of obejcts where each object is an update of their college
-// where each object will have two attributes & "innerText" and "link"
+// where each object will have two attributes & "innerText" and "linkArr"
+// where linkArr is an array of links that the heading is associated with
 // _______________________________________________________________
 // returns data[dtu] list of updates
 const { load } = require('cheerio');
@@ -13,7 +14,7 @@ module.exports = async () => {
     $('div[class="modal-body quick"]').find('div > p > a').each(function (_index, element) {
         list.push({
             innerText: $(element).text(),
-            link: $(element).attr('href'),
+            linkArr: [$(element).attr('href')]
         })
     });
     return list;

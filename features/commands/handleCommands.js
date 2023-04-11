@@ -15,8 +15,7 @@ const getIp = async () => {
     ip = await ip.text();
     return ip;
 }
-
-let privNums = ["8815065180", "9667240912"];
+require("../../AlertBot.config.js");
 
 const checkPriv = async (jid) => {
     let num = jid.substring(0, 10);
@@ -90,6 +89,7 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
                         break;
                     case "debug":
                         if(args[0]=="jid") await replyM(grpId, grpId);
+                        else if (args[0]=="current") await replyM(grpId, await readFile("./groups.json"));
                         else await replyM(grpId, "too few or invalid argument(s).");
                         break;
                     case 'tagall':
@@ -127,9 +127,6 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
                         await writeFile("./groups.json", JSON.stringify(groupJson));
                         await replyM(grpId, `group has been registered.`);
                         break;
-                    case "current":
-                        await replyM(grpId, await readFile("./groups.json"));
-                        break;
                     default :
                         await replyM(grpId, "not a valid command.");
                         break;
@@ -150,5 +147,3 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
         }
     }
 }
-
-

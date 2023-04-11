@@ -116,7 +116,7 @@ async function startBot() {
           for (const jid of groupArr) {
             for (const i of result) {
               console.log(i.linkArr);
-              for(let j=0; j<linkArr.length; j++){
+              for(let j=0; j<i.linkArr.length; j++){
                 try {
                   if (i.linkArr[j].slice(-4) == ".pdf") {
                     await ws.sendFile(jid, i.linkArr[j], i.innerText);

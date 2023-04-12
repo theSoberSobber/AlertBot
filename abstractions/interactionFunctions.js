@@ -17,7 +17,7 @@ module.exports = iFunctions = async (ws) => {
             footer: footer,
             templateButtons: templateButtons
         }
-        await ws.sendMessage(jid, templateMessage)
+        await ws.sendMessage(jid, templateMessage);
     }
 
     ws.sendFile = async (jid, url, caption) => {

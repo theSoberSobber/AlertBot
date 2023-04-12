@@ -37,9 +37,9 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
         senderJid = messageObj.key.participant;
         groupMetadata = await ws.groupMetadata(grpId).catch(e => {});
     }
-    console.log(messageObj);
+    // console.log(messageObj);
     if(messageObj.messageStubParameters){
-        console.log(grpId);
+        // console.log(grpId);
         // await replyM(grpId, "Alert Bot has been added to this group!");
         return;
     }
@@ -59,8 +59,33 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
                         await replyM(senderJid, "pong.");
                         break;
                     case "ssh":
+                        if(!checkPriv(senderJid)) break;
                         const ip = await getIp();
                         await replyM(senderJid, `ssh u0_a343@${ip} -p 8022`);
+                        break;
+                    case "help":
+                        let helpTxt = `╔════════
+╠══ *AlertBot@2023*
+╠ ${prefix}help
+╠ ${prefix}setup <cName>
+╠ ${prefix}debug <option>
+╠══ ${prefix}debug jid
+╠══ ${prefix}debug current
+╠ ${prefix}manual <cName> <message>
+╠ ${prefix}ping
+╠ ${prefix}ssh
+╠ ${prefix}unregister
+╠ ${prefix}contact
+╠ ${prefix}github
+╚════════`;
+                        await replyM(senderJid, helpTxt);
+                        break;
+                    case "contact":
+                        await replyM(senderJid, `Pavit: +918815065180
+Krrish: +919667240912`);
+                        break;
+                    case "github":
+                        await replyM(senderJid, `https://github.com/theSoberSobber/AlertBot`);
                         break;
                     case "manual":
                         if(!checkPriv(senderJid)) break;
@@ -98,14 +123,14 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
                             break;
                         }
                         const participants = await groupMetadata.participants;
-                        console.log(participants);
-                        console.log(participants.map(a => a.id));
+                        // console.log(participants);
+                        // console.log(participants.map(a => a.id));
                         await ws.sendMessage(grpId, { text : '' , mentions: participants.map(a => a.id)});
                         break;                          
                     case "setup":
                         let f=0;
                         if(args[0]===undefined){
-                            console.log("bhai pura de", grpId);
+                            // console.log("bhai pura de", grpId);
                             await replyM(grpId, "too few or invalid argument(s).");
                             break;
                         }
@@ -127,6 +152,21 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
                         await writeFile("./groups.json", JSON.stringify(groupJson));
                         await replyM(grpId, `group has been registered.`);
                         break;
+                    case "unregister":
+                        const groupAllJson = await JSON.parse(await readFile("./groups.json"));
+                        for(let college in groupAllJson){
+                            for(let i=0; i<groupAllJson[college].length; i++){
+                                if(groupAllJson[college][i]==grpId){
+                                    await groupAllJson[college].splice(i, 1);
+                                    await writeFile("./groups.json", JSON.stringify(groupJson));
+                                    await replyM(grpId, "group successfully removed from AlertBot.");
+                                    f=1;
+                                    break;
+                                }
+                            }
+                        }
+                        if(f) break;
+                        await replyM(grpId, "group isn't regsitered to AlertBot.");
                     default :
                         await replyM(grpId, "not a valid command.");
                         break;

@@ -3,6 +3,7 @@ const {
   default: makeWASocket,
   useMultiFileAuthState,
   jidNormalizedUser,
+  DisconnectReason,
 } = require("@adiwajshing/baileys");
 
 const pino = require("pino");
@@ -22,7 +23,7 @@ async function startBot() {
       return tempStore[id]?.message;
     };
     const ws = makeWASocket({
-      logger: pino({ level: "silent" }),
+      logger: pino({ level: "error" }),
       printQRInTerminal: true,
       getMessage,
       //work tempelate message
@@ -58,14 +59,13 @@ async function startBot() {
     // _______________________________________________________________
 
     ws.ev.on("connection.update", async (update) => {
-      const { connection } = update;
+      const { connection, lastDisconnect } = update;
       try {
         if (connection === "open") {
           console.log("Connection Successful!");
           ws.sendMessage(debug_jid, { text: "Connected Successfully" });
         } else if (connection === "close") {
-          console.log("Connection Closed!");
-          console.log("Restarting!");
+          await require("./abstractions/disconnectHandler.js")(DisconnectReason, lastDisconnect);
           startBot();
         }
       } catch (e) {
@@ -110,13 +110,13 @@ async function startBot() {
         }
         // for this the names in map must be the same as the one's used to create group links
         groupArr = groupArr[name];
-        console.log(groupArr);
+        // console.log(groupArr);
         // const result =0;
         // now handle user interaction
         if (result.length != 0) {
           for (const jid of groupArr) {
             for (const i of result) {
-              console.log(i.linkArr);
+              // console.log(i.linkArr);
               for(let j=0; j<i.linkArr.length; j++){
                 try {
                   if (i.linkArr[j].slice(-4) == ".pdf") {

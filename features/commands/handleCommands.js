@@ -153,6 +153,7 @@ Krrish: +919667240912`);
                         await replyM(grpId, `group has been registered.`);
                         break;
                     case "unregister":
+                        let fl=0;
                         const groupAllJson = await JSON.parse(await readFile("./groups.json"));
                         for(let college in groupAllJson){
                             for(let i=0; i<groupAllJson[college].length; i++){
@@ -160,11 +161,11 @@ Krrish: +919667240912`);
                                     await groupAllJson[college].splice(i, 1);
                                     await writeFile("./groups.json", JSON.stringify(groupAllJson));
                                     await replyM(grpId, `group successfully removed from AlertBot for college ${college}.`);
-                                    f=1;
+                                    fl=1;
                                 }
                             }
                         }
-                        if(f) break;
+                        if(fl) break;
                         await replyM(grpId, "group isn't regsitered to AlertBot.");
                     default :
                         await replyM(grpId, "not a valid command.");

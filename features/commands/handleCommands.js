@@ -159,9 +159,8 @@ Krrish: +919667240912`);
                                 if(groupAllJson[college][i]==grpId){
                                     await groupAllJson[college].splice(i, 1);
                                     await writeFile("./groups.json", JSON.stringify(groupJson));
-                                    await replyM(grpId, "group successfully removed from AlertBot.");
+                                    await replyM(grpId, `group successfully removed from AlertBot for college ${college}.`);
                                     f=1;
-                                    break;
                                 }
                             }
                         }

@@ -158,7 +158,7 @@ Krrish: +919667240912`);
                             for(let i=0; i<groupAllJson[college].length; i++){
                                 if(groupAllJson[college][i]==grpId){
                                     await groupAllJson[college].splice(i, 1);
-                                    await writeFile("./groups.json", JSON.stringify(groupJson));
+                                    await writeFile("./groups.json", JSON.stringify(groupAllJson));
                                     await replyM(grpId, `group successfully removed from AlertBot for college ${college}.`);
                                     f=1;
                                 }

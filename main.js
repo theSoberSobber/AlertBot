@@ -60,7 +60,10 @@ async function startBot() {
           console.log("Connection Successful!");
           ws.sendMessage(debug_jid, { text: "Connected Successfully" });
         } else if (connection === "close") {
-          await require("./abstractions/disconnectHandler.js")(DisconnectReason, lastDisconnect);
+          await require("./abstractions/disconnectHandler.js")(
+            DisconnectReason,
+            lastDisconnect
+          );
           startBot();
         }
       } catch (e) {
@@ -84,10 +87,12 @@ async function startBot() {
 
     // call main every 15 seconds
     const x = 60 / 60;
-    try{
+    try {
       await updateHandler(ws);
-      setInterval( async () => { await updateHandler(ws); }, 10000 );
-    } catch(e){
+      setInterval(async () => {
+        await updateHandler(ws);
+      }, 10000);
+    } catch (e) {
       console.log(e);
       startBot();
     }

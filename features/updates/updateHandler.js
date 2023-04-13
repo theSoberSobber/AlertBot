@@ -24,8 +24,8 @@ const updateHandler = async (ws) => {
     } catch (err) {
       // fall back on a old cached info.json
       // TODO : Build Mechanism to cache info.json
-    //   groupArr = await readFile("../../info.json");
-    //   groupArr = await JSON.parse(groupArr);
+      //   groupArr = await readFile("../../info.json");
+      //   groupArr = await JSON.parse(groupArr);
       continue;
     }
     // for this the names in map must be the same as the one's used to create group links
@@ -64,5 +64,5 @@ const updateHandler = async (ws) => {
 };
 
 module.exports = {
-    updateHandler
-}
+  updateHandler,
+};

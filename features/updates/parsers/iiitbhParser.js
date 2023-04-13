@@ -2,45 +2,47 @@
 // where each object will have two attributes & "innerText" and "link"
 // ___________________________________
 // returns data[manit] list of updates
-const { load } = require('cheerio');
-const base = 'https://www.iiitbhopal.ac.in/media/notice';
+const { load } = require("cheerio");
+const base = "https://www.iiitbhopal.ac.in/media/notice";
 
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
 
 // needs a rewrite to be able to group links in linkArr, nsut one also needs
 
 module.exports = async () => {
-    var list = [];
+  var list = [];
 
-    let res = await fetch('https://www.iiitbhopal.ac.in/api/CMSData/GetNoticeData1?Category=Notice');
-    res = await res.json();
-    // console.log(res);
+  let res = await fetch(
+    "https://www.iiitbhopal.ac.in/api/CMSData/GetNoticeData1?Category=Notice"
+  );
+  res = await res.json();
+  // console.log(res);
 
-    for(let i in res){
-        // %4 pe 1,2,3 remainder vale concat karne for link
-        let link="";
-        for(let j in res[i]["NoticeData"].split(";")){
-            if(j%4==0){
-                link+=base;
-                continue;
-            }
-            if(j%4==3) link+=".";
-            else link+="/";
-            link+=res[i]["NoticeData"].split(";")[j].toLowerCase();
-            if(j%4==3){
-                list.push({
-                    innerText: res[i]["Title"],
-                    linkArr: [link],
-                });
-                link="";
-            }
-        }
+  for (let i in res) {
+    // %4 pe 1,2,3 remainder vale concat karne for link
+    let link = "";
+    for (let j in res[i]["NoticeData"].split(";")) {
+      if (j % 4 == 0) {
+        link += base;
+        continue;
+      }
+      if (j % 4 == 3) link += ".";
+      else link += "/";
+      link += res[i]["NoticeData"].split(";")[j].toLowerCase();
+      if (j % 4 == 3) {
+        list.push({
+          innerText: res[i]["Title"],
+          linkArr: [link],
+        });
+        link = "";
+      }
     }
-    return list;
-}
+  }
+  return list;
+};
 
-if(require.main=== module){
-    (async ()=> {
-        console.log(await require("./iiitbhParser.js")());
-    })();
+if (require.main === module) {
+  (async () => {
+    console.log(await require("./iiitbhParser.js")());
+  })();
 }

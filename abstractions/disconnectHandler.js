@@ -1,4 +1,4 @@
-const {Boom} = require("@hapi/boom");
+const { Boom } = require("@hapi/boom");
 module.exports = async (DisconnectReason, lastDisconnect) => {
   let reason = new Boom(lastDisconnect?.error)?.output.statusCode;
   if (reason === DisconnectReason.badSession) {

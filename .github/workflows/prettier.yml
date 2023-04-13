@@ -8,5 +8,3 @@ jobs:
         run: npm i -g npm@8
       - name: Prettify code
         uses: creyD/prettier_action@v4.2
-        with:
-          prettier_options: --write **/*.{js,json}

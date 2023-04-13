@@ -22,21 +22,19 @@ async function checkAndReturn(pathOfDump, name) {
     toTest = toTest[name];
     const diff = [];
 
-    //console.log("===============TO TEST=========");
-    //console.log(toTest);
-    //console.log("===============GOT TEST=========");
-    //console.log(gotTest);
-
+    // console.log("===============TO TEST=========");
+    // console.log(toTest);
+    // console.log("===============GOT TEST=========");
+    // console.log(gotTest);
     if(toTest){
         for (const e of gotTest){
-            if (!(toTest.filter(item => item.link === e.link).length))
-                diff.push(e);
+            if (!(toTest.filter(item => item.linkArr[0] === e.linkArr[0]).length)) diff.push(e);
 	}
         if (!diff.length)
             return [];
     }
     file[name] = gotTest;
-
+    console.log("i am the dfference array", diff);
     await writeFile(pathOfDump, JSON.stringify(file), "utf-8");
 
     return diff;

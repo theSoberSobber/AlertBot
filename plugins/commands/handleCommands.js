@@ -11,8 +11,11 @@ const checkAndParse = async (body) => {
 };
 
 const getIp = async () => {
-  try{let ip = await fetch("https://checkip.amazonaws.com/");}
-  catch(err){console.log("Fetch Failed!");}
+  try {
+    let ip = await fetch("https://checkip.amazonaws.com/");
+  } catch (err) {
+    console.log("Fetch Failed!");
+  }
   ip = await ip.text();
   return ip;
 };
@@ -40,11 +43,14 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
   }
   if (messageObj.messageStubParameters?.length) {
     console.log(grpId);
-    const grpName=messageObj.messageStubParameters[0];
-    await replyM(grpId, `Alert Bot has been successfully added to ${grpName}!
+    const grpName = messageObj.messageStubParameters[0];
+    await replyM(
+      grpId,
+      `Alert Bot has been successfully added to ${grpName}!
 Use /help to proceed further ✨
 Use /list to see the list of currently supported colleges.
-If your college isn't in the list, use /contact to inform us about it.`);
+If your college isn't in the list, use /contact to inform us about it.`
+    );
     return;
   }
   messageObj = messageObj.message;
@@ -86,9 +92,9 @@ If your college isn't in the list, use /contact to inform us about it.`);
             break;
           case "list":
             let listTxt = "";
-            for (let name in require('../updates/map.js'))
+            for (let name in require("../updates/map.js"))
               listTxt += `${name}\n`;
-            await replyM(senderJid, listTxt.substring(0,listTxt.length-2));
+            await replyM(senderJid, listTxt.substring(0, listTxt.length - 2));
             break;
           case "contact":
             await replyM(
@@ -179,7 +185,9 @@ Krrish: +919667240912`
               await replyM(grpId, "too few or invalid argument(s).");
               break;
             }
-            const groupJson = await JSON.parse(await readFile("./data/groups.json"));
+            const groupJson = await JSON.parse(
+              await readFile("./data/groups.json")
+            );
             for (let college in groupJson) {
               if (college == args[0]) {
                 for (let i = 0; i < groupJson[college].length; i++) {
@@ -199,9 +207,9 @@ Krrish: +919667240912`
             break;
           case "list":
             let listTxt = "";
-            for (let name in require('../updates/map.js'))
+            for (let name in require("../updates/map.js"))
               listTxt += `${name}\n`;
-            await replyM(grpId, listTxt.substring(0,listTxt.length-2));
+            await replyM(grpId, listTxt.substring(0, listTxt.length - 2));
             break;
           case "contact":
             await replyM(
@@ -211,10 +219,7 @@ Krrish: +919667240912`
             );
             break;
           case "github":
-            await replyM(
-              grpId,
-              `https://github.com/theSoberSobber/AlertBot`
-            );
+            await replyM(grpId, `https://github.com/theSoberSobber/AlertBot`);
             break;
           case "unregister":
             let fl = 0;
@@ -256,7 +261,6 @@ Krrish: +919667240912`
     if (messageObj?.imageMessage) {
       // image message
       let body = messageObj.imageMessage.caption.toLowerCase();
-    }
-    else return;
+    } else return;
   }
 };

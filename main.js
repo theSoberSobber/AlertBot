@@ -15,7 +15,7 @@ async function startBot() {
     const getMessage = async (key) => {
       const { id } = key;
       console.log("Resending", id);
-      let tempStore = await readFile('./data/store.json', "utf-8");
+      let tempStore = await readFile("./data/store.json", "utf-8");
       tempStore = await JSON.parse(tempStore);
       return tempStore[id]?.message;
     };
@@ -59,7 +59,7 @@ async function startBot() {
       try {
         if (connection === "open") {
           console.log("Connection Successful!");
-          for(let i=0;i<debugNums.length;++i){
+          for (let i = 0; i < debugNums.length; ++i) {
             const debugJid = `${countryCode}${debugNums[i]}@s.whatsapp.net`;
             ws.sendMessage(debugJid, { text: "Connected Successfully" });
           }

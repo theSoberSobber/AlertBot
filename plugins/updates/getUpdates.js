@@ -4,9 +4,13 @@ const { readFile, writeFile } = require("fs/promises");
 
 async function checkAndReturn(pathOfDump, name) {
   // the name and parser are coming from the map
-  let gotTest
-  try{gotTest = await map[name]();}
-  catch(err){console.log("Fetch Failed!",err);return [];}
+  let gotTest;
+  try {
+    gotTest = await map[name]();
+  } catch (err) {
+    console.log("Fetch Failed!", err);
+    return [];
+  }
   let file;
   try {
     file = await readFile(pathOfDump, "utf-8");
@@ -20,7 +24,7 @@ async function checkAndReturn(pathOfDump, name) {
     file[name] = [];
   }
   toTest = file;
-  if(toTest[name]===undefined) toTest[name]=[];
+  if (toTest[name] === undefined) toTest[name] = [];
   toTest = toTest[name];
   const diff = [];
 

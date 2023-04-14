@@ -11,7 +11,6 @@ const pathOfDump = "./data/data.json";
 const map = require("./map.js");
 
 const updateHandler = async (ws) => {
-
   for (let name in map) {
     const result = await checkAndReturn(pathOfDump, name);
     // fetch all current group(s) associated with AlertBot
@@ -46,7 +45,7 @@ const updateHandler = async (ws) => {
               return;
             }
           }
-          await ws.sendMessage(jid, {text: i.innerText});
+          await ws.sendMessage(jid, { text: i.innerText });
         }
         await ws.sendMessage(jid, {
           text: `Brought to you by https://alert-bot.vercel.app`,

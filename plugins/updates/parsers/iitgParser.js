@@ -20,12 +20,15 @@ module.exports = async () => {
       const optimisedLink = $(element).attr("href").startsWith("http")
         ? $(element).attr("href")
         : base + $(element).attr("href");
-      if(list.length==0||list[list.length-1].innerText!=$(element).text())
+      if (
+        list.length == 0 ||
+        list[list.length - 1].innerText != $(element).text()
+      )
         list.push({
           innerText: $(element).text(),
           linkArr: [],
         });
-      list[list.length-1].linkArr.push(optimisedLink);
+      list[list.length - 1].linkArr.push(optimisedLink);
     });
   return list;
 };

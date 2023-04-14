@@ -94,7 +94,7 @@ If your college isn't in the list, use /contact to inform us about it.`
             let listTxt = "";
             for (let name in require("../updates/map.js"))
               listTxt += `${name}\n`;
-            await replyM(senderJid, listTxt.substring(0, listTxt.length - 2));
+            await replyM(senderJid, listTxt.substring(0, listTxt.length - 1));
             break;
           case "contact":
             await replyM(
@@ -209,7 +209,7 @@ Krrish: +919667240912`
             let listTxt = "";
             for (let name in require("../updates/map.js"))
               listTxt += `${name}\n`;
-            await replyM(grpId, listTxt.substring(0, listTxt.length - 2));
+            await replyM(grpId, listTxt.substring(0, listTxt.length - 1));
             break;
           case "contact":
             await replyM(

@@ -37,10 +37,11 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
     senderJid = messageObj.key.participant;
     groupMetadata = await ws.groupMetadata(grpId).catch((e) => {});
   }
-  // console.log(messageObj);
-  if (messageObj.messageStubParameters) {
-    // console.log(grpId);
-    // await replyM(grpId, "Alert Bot has been added to this group!");
+  if (messageObj.messageStubParameters?.length) {
+    console.log(grpId);
+    const grpName=messageObj.messageStubParameters[0];
+    await replyM(grpId, `Alert Bot has been successfully added to ${grpName}!
+Use /help to proceed further ✨`);
     return;
   }
   messageObj = messageObj.message;
@@ -124,6 +125,23 @@ Krrish: +919667240912`
             else if (args[0] == "current")
               await replyM(grpId, await readFile("./groups.json"));
             else await replyM(grpId, "too few or invalid argument(s).");
+            break;
+            case "help":
+              let helpTxt = `╔════════
+╠══ *AlertBot@2023*
+╠ ${prefix}help
+╠ ${prefix}setup <cName>
+╠ ${prefix}debug <option>
+╠══ ${prefix}debug jid
+╠══ ${prefix}debug current
+╠ ${prefix}manual <cName> <message>
+╠ ${prefix}ping
+╠ ${prefix}ssh
+╠ ${prefix}unregister
+╠ ${prefix}contact
+╠ ${prefix}github
+╚════════`;
+            await replyM(grpId, helpTxt);
             break;
           case "tagall":
             if (!checkPriv(senderJid)) {

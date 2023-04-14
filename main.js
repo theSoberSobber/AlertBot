@@ -8,17 +8,20 @@ const {
 
 const pino = require("pino");
 
+const { readFile } = require("fs/promises");
+
 async function startBot() {
   const { state, saveCreds } = await useMultiFileAuthState("sesi");
   try {
-    let tempStore = {};
     const getMessage = async (key) => {
       const { id } = key;
       console.log("Resending", id);
+      let tempStore = await readFile('./data/store.json', "utf-8");
+      tempStore = await JSON.parse(tempStore);
       return tempStore[id]?.message;
     };
     const ws = makeWASocket({
-      logger: pino({ level: "error" }),
+      logger: pino({ level: "silent" }),
       printQRInTerminal: true,
       getMessage,
       //work tempelate message
@@ -49,7 +52,6 @@ async function startBot() {
     ws.ev.on("creds.update", saveCreds);
     require("./abstractions/interactionFunctions.js")(ws);
     require("./AlertBot.config.js");
-    const debug_jid = `${countryCode}${debugNum}@s.whatsapp.net`;
     if (ws.user && ws.user.id) ws.user.jid = jidNormalizedUser(ws.user.id);
     // _______________________________________________________________
 
@@ -58,7 +60,10 @@ async function startBot() {
       try {
         if (connection === "open") {
           console.log("Connection Successful!");
-          ws.sendMessage(debug_jid, { text: "Connected Successfully" });
+          for(let i=0;i<debugNums.length;++i){
+            const debugJid = `${countryCode}${debugNums[i]}@s.whatsapp.net`;
+            ws.sendMessage(debugJid, { text: "Connected Successfully" });
+          }
         } else if (connection === "close") {
           await require("./abstractions/disconnectHandler.js")(
             DisconnectReason,
@@ -88,9 +93,9 @@ async function startBot() {
     // call main every 15 seconds
     const x = 60 / 60;
     try {
-      tempStore = await updateHandler(ws,tempStore);
+      await updateHandler(ws);
       setInterval(async () => {
-        tempStore = await updateHandler(ws,tempStore);
+        await updateHandler(ws);
       }, 10000);
     } catch (e) {
       console.log(e);

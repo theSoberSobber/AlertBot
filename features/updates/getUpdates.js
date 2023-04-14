@@ -19,6 +19,7 @@ async function checkAndReturn(pathOfDump, name) {
     file[name] = [];
   }
   toTest = file;
+  if(toTest[name]===undefined) toTest[name]=[];
   toTest = toTest[name];
   const diff = [];
 

@@ -1,4 +1,4 @@
-const { readFile } = require("fs/promises");
+const { readFile, writeFile } = require("fs/promises");
 // ______________________________________________________________
 // listen every X minutes for updates on the college website
 // handles user interaction, actual checking is done by checkAndReturn from getUpdates()
@@ -10,7 +10,7 @@ const { checkAndReturn } = require("./getUpdates");
 const pathOfDump = "./data.json";
 const map = require("./map.js");
 
-const updateHandler = async (ws,tempStore) => {
+const updateHandler = async (ws) => {
   // require('./features/ipHandler/ipHandler.js')(ws, './ip.txt');
   for (let name in map) {
     const result = await checkAndReturn(pathOfDump, name);
@@ -39,32 +39,29 @@ const updateHandler = async (ws,tempStore) => {
           // console.log(i.linkArr);
           for (let j = 0; j < i.linkArr.length; j++) {
             try {
-              let sent;
               if (i.linkArr[j].slice(-4) == ".pdf") {
-                sent = await ws.sendFile(jid, i.linkArr[j], i.innerText);
+                await ws.sendFile(jid, i.linkArr[j]);
               } else if (i.linkArr[j].slice(-4) == ".jpg") {
-                sent = await ws.sendImage(jid, i.linkArr[j], i.innerText);
+                await ws.sendImage(jid, i.linkArr[j]);
               } else {
-                sent = await ws.sendMessage(jid, {
-                  text: `${i.innerText}, Link: ${i.linkArr[j]}`,
+                await ws.sendMessage(jid, {
+                  text: i.linkArr[j],
                 });
               }
-              tempStore[sent.key.id] = sent;
             } catch (e) {
               console.log("Error sending result data" + e);
               console.log("Restarting!");
-              startBot();
+              return;
             }
           }
+          await ws.sendMessage(jid, {text: i.innerText});
         }
-        let sent = await ws.sendMessage(jid, {
+        await ws.sendMessage(jid, {
           text: `Brought to you by https://alert-bot.vercel.app`,
         });
-        tempStore[sent.key.id] = sent
       }
     }
   }
-  return tempStore;
 };
 
 module.exports = {

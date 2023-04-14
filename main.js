@@ -11,7 +11,7 @@ const pino = require("pino");
 async function startBot() {
   const { state, saveCreds } = await useMultiFileAuthState("sesi");
   try {
-    const tempStore = {};
+    let tempStore = {};
     const getMessage = async (key) => {
       const { id } = key;
       console.log("Resending", id);
@@ -88,9 +88,9 @@ async function startBot() {
     // call main every 15 seconds
     const x = 60 / 60;
     try {
-      await updateHandler(ws);
+      tempStore = await updateHandler(ws,tempStore);
       setInterval(async () => {
-        await updateHandler(ws);
+        tempStore = await updateHandler(ws,tempStore);
       }, 10000);
     } catch (e) {
       console.log(e);

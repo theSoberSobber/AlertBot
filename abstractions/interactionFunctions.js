@@ -17,7 +17,7 @@ module.exports = iFunctions = async (ws) => {
       footer: footer,
       templateButtons: templateButtons,
     };
-    await ws.sendMessage(jid, templateMessage);
+    return await ws.sendMessage(jid, templateMessage);
   };
 
   ws.sendFile = async (jid, url, caption) => {
@@ -26,7 +26,7 @@ module.exports = iFunctions = async (ws) => {
       mimetype: "application/pdf",
       caption: caption,
     };
-    await ws.sendMessage(jid, fileObj);
+    return await ws.sendMessage(jid, fileObj);
   };
 
   ws.sendImage = async (jid, url, caption) => {
@@ -34,7 +34,7 @@ module.exports = iFunctions = async (ws) => {
       image: await getBuffer(url),
       caption: caption,
     };
-    await ws.sendMessage(jid, fileObj);
+    return await ws.sendMessage(jid, fileObj);
   };
   //________________________________________________________________________________________
 };

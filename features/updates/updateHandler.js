@@ -10,7 +10,7 @@ const { checkAndReturn } = require("./getUpdates");
 const pathOfDump = "./data.json";
 const map = require("./map.js");
 
-const updateHandler = async (ws) => {
+const updateHandler = async (ws,tempStore) => {
   // require('./features/ipHandler/ipHandler.js')(ws, './ip.txt');
   for (let name in map) {
     const result = await checkAndReturn(pathOfDump, name);
@@ -39,15 +39,17 @@ const updateHandler = async (ws) => {
           // console.log(i.linkArr);
           for (let j = 0; j < i.linkArr.length; j++) {
             try {
+              let sent;
               if (i.linkArr[j].slice(-4) == ".pdf") {
-                await ws.sendFile(jid, i.linkArr[j], i.innerText);
+                sent = await ws.sendFile(jid, i.linkArr[j], i.innerText);
               } else if (i.linkArr[j].slice(-4) == ".jpg") {
-                await ws.sendImage(jid, i.linkArr[j], i.innerText);
+                sent = await ws.sendImage(jid, i.linkArr[j], i.innerText);
               } else {
-                await ws.sendMessage(jid, {
+                sent = await ws.sendMessage(jid, {
                   text: `${i.innerText}, Link: ${i.linkArr[j]}`,
                 });
               }
+              tempStore[sent.key.id] = sent;
             } catch (e) {
               console.log("Error sending result data" + e);
               console.log("Restarting!");
@@ -55,12 +57,14 @@ const updateHandler = async (ws) => {
             }
           }
         }
-        await ws.sendMessage(jid, {
+        let sent = await ws.sendMessage(jid, {
           text: `Brought to you by https://alert-bot.vercel.app`,
         });
+        tempStore[sent.key.id] = sent
       }
     }
   }
+  return tempStore;
 };
 
 module.exports = {

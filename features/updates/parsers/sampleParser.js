@@ -14,10 +14,12 @@ module.exports = async () => {
   $('div[class="modal-body quick"]')
     .find("div > p > a")
     .each(function (_index, element) {
-      list.push({
-        innerText: $(element).text(),
-        linkArr: [$(element).attr("href")],
-      });
+      if(list.length==0||list[list.length-1].innerText!=$(element).text())
+        list.push({
+          innerText: $(element).text(),
+          linkArr: [],
+        });
+      list[list.length-1].linkArr.push($(element).attr("href"));
     });
   return list;
 };

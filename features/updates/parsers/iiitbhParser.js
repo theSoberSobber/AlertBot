@@ -30,10 +30,12 @@ module.exports = async () => {
       else link += "/";
       link += res[i]["NoticeData"].split(";")[j].toLowerCase();
       if (j % 4 == 3) {
-        list.push({
-          innerText: res[i]["Title"],
-          linkArr: [link],
-        });
+        if(list.length==0||list[list.length-1].innerText!=res[i]["Title"])
+          list.push({
+            innerText: res[i]["Title"],
+            linkArr: [],
+          });
+        list[list.length-1].linkArr.push(link);
         link = "";
       }
     }

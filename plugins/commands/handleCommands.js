@@ -11,7 +11,8 @@ const checkAndParse = async (body) => {
 };
 
 const getIp = async () => {
-  let ip = await fetch("https://checkip.amazonaws.com/");
+  try{let ip = await fetch("https://checkip.amazonaws.com/");}
+  catch(err){console.log("Fetch Failed!");}
   ip = await ip.text();
   return ip;
 };
@@ -104,13 +105,13 @@ Krrish: +919667240912`
             break;
           case "debug":
             if (args[0] == "current")
-              await replyM(senderJid, await readFile("./groups.json"));
+              await replyM(senderJid, await readFile("./data/groups.json"));
             else await replyM(senderJid, "too few or invalid argument(s).");
             break;
           case "manual":
             if (!checkPriv(senderJid)) break;
             const allGroupsJson = await JSON.parse(
-              await readFile("./groups.json")
+              await readFile("./data/groups.json")
             );
             let message = "";
             for (let i = 1; i < args.length; i++) message += `${args[i]} `;
@@ -137,7 +138,7 @@ Krrish: +919667240912`
           case "debug":
             if (args[0] == "jid") await replyM(grpId, grpId);
             else if (args[0] == "current")
-              await replyM(grpId, await readFile("./groups.json"));
+              await replyM(grpId, await readFile("./data/groups.json"));
             else await replyM(grpId, "too few or invalid argument(s).");
             break;
           case "help":
@@ -178,7 +179,7 @@ Krrish: +919667240912`
               await replyM(grpId, "too few or invalid argument(s).");
               break;
             }
-            const groupJson = await JSON.parse(await readFile("./groups.json"));
+            const groupJson = await JSON.parse(await readFile("./data/groups.json"));
             for (let college in groupJson) {
               if (college == args[0]) {
                 for (let i = 0; i < groupJson[college].length; i++) {
@@ -193,7 +194,7 @@ Krrish: +919667240912`
             if (f) break;
             if (groupJson[args[0]] === undefined) groupJson[args[0]] = [];
             groupJson[args[0]].push(grpId);
-            await writeFile("./groups.json", JSON.stringify(groupJson));
+            await writeFile("./data/groups.json", JSON.stringify(groupJson));
             await replyM(grpId, `group has been registered.`);
             break;
           case "list":
@@ -218,14 +219,14 @@ Krrish: +919667240912`
           case "unregister":
             let fl = 0;
             const groupAllJson = await JSON.parse(
-              await readFile("./groups.json")
+              await readFile("./data/groups.json")
             );
             for (let college in groupAllJson) {
               for (let i = 0; i < groupAllJson[college].length; i++) {
                 if (groupAllJson[college][i] == grpId) {
                   await groupAllJson[college].splice(i, 1);
                   await writeFile(
-                    "./groups.json",
+                    "./data/groups.json",
                     JSON.stringify(groupAllJson)
                   );
                   await replyM(
@@ -244,17 +245,18 @@ Krrish: +919667240912`
         }
       }
     }
-    if (messageObj.extendedTextMessage) {
+    if (messageObj?.extendedTextMessage) {
       // extendedTextMessage
       let body = messageObj.extendedTextMessage.text.toLowerCase();
     }
-    if (messageObj.videoMessage) {
+    if (messageObj?.videoMessage) {
       // video message
       let body = messageObj.videoMessage.caption.toLowerCase();
     }
-    if (messageObj.imageMessage) {
+    if (messageObj?.imageMessage) {
       // image message
       let body = messageObj.imageMessage.caption.toLowerCase();
     }
+    else return;
   }
 };

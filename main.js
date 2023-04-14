@@ -1,4 +1,3 @@
-// Krrish Issue : https://github.com/adiwajshing/Baileys/issues/1631#issuecomment-1132816956
 const {
   default: makeWASocket,
   useMultiFileAuthState,
@@ -50,7 +49,7 @@ async function startBot() {
       auth: state,
     });
     ws.ev.on("creds.update", saveCreds);
-    require("./abstractions/interactionFunctions.js")(ws);
+    require("./lib/interactionFunctions.js")(ws);
     require("./AlertBot.config.js");
     if (ws.user && ws.user.id) ws.user.jid = jidNormalizedUser(ws.user.id);
     // _______________________________________________________________
@@ -65,7 +64,7 @@ async function startBot() {
             ws.sendMessage(debugJid, { text: "Connected Successfully" });
           }
         } else if (connection === "close") {
-          await require("./abstractions/disconnectHandler.js")(
+          await require("./lib/disconnectHandler.js")(
             DisconnectReason,
             lastDisconnect
           );
@@ -80,7 +79,7 @@ async function startBot() {
 
     ws.ev.on("messages.upsert", async (chatUpdate) => {
       try {
-        require("./features/commands/handleCommands.js")(ws, chatUpdate);
+        require("./plugins/commands/handleCommands.js")(ws, chatUpdate);
       } catch (err) {
         console.log(err);
       }
@@ -88,7 +87,11 @@ async function startBot() {
 
     // _______________________________________________________________
 
-    const { updateHandler } = require("./features/updates/updateHandler.js");
+    // require('./plugins/ipHandler/ipHandler.js')(ws, './ip.txt');
+
+    // _______________________________________________________________
+
+    const { updateHandler } = require("./plugins/updates/updateHandler.js");
 
     // call main every 15 seconds
     const x = 60 / 60;

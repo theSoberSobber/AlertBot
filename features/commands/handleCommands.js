@@ -41,7 +41,9 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
     console.log(grpId);
     const grpName=messageObj.messageStubParameters[0];
     await replyM(grpId, `Alert Bot has been successfully added to ${grpName}!
-Use /help to proceed further ✨`);
+Use /help to proceed further ✨
+Use /list to see the list of currently supported colleges.
+If your college isn't in the list, use /contact to inform us about it.`);
     return;
   }
   messageObj = messageObj.message;
@@ -49,7 +51,7 @@ Use /help to proceed further ✨`);
   // API ENDS HERE
   // ________________________________________________
   if (!fromMe) {
-    if (messageObj.conversation) {
+    if (messageObj?.conversation) {
       // normal text
       let body = messageObj.conversation.toLowerCase();
       if ((await checkAndParse(body)) && !isGrp) {
@@ -67,6 +69,7 @@ Use /help to proceed further ✨`);
             let helpTxt = `╔════════
 ╠══ *AlertBot@2023*
 ╠ ${prefix}help
+╠ ${prefix}list
 ╠ ${prefix}setup <cName>
 ╠ ${prefix}debug <option>
 ╠══ ${prefix}debug jid
@@ -80,6 +83,12 @@ Use /help to proceed further ✨`);
 ╚════════`;
             await replyM(senderJid, helpTxt);
             break;
+          case "list":
+            let listTxt = "";
+            for (let name in require('../updates/map.js'))
+              listTxt += `${name}\n`;
+            await replyM(senderJid, listTxt.substring(0,listTxt.length-2));
+            break;
           case "contact":
             await replyM(
               senderJid,
@@ -92,6 +101,11 @@ Krrish: +919667240912`
               senderJid,
               `https://github.com/theSoberSobber/AlertBot`
             );
+            break;
+          case "debug":
+            if (args[0] == "current")
+              await replyM(senderJid, await readFile("./groups.json"));
+            else await replyM(senderJid, "too few or invalid argument(s).");
             break;
           case "manual":
             if (!checkPriv(senderJid)) break;
@@ -126,10 +140,11 @@ Krrish: +919667240912`
               await replyM(grpId, await readFile("./groups.json"));
             else await replyM(grpId, "too few or invalid argument(s).");
             break;
-            case "help":
-              let helpTxt = `╔════════
+          case "help":
+            let helpTxt = `╔════════
 ╠══ *AlertBot@2023*
 ╠ ${prefix}help
+╠ ${prefix}list
 ╠ ${prefix}setup <cName>
 ╠ ${prefix}debug <option>
 ╠══ ${prefix}debug jid
@@ -180,6 +195,25 @@ Krrish: +919667240912`
             groupJson[args[0]].push(grpId);
             await writeFile("./groups.json", JSON.stringify(groupJson));
             await replyM(grpId, `group has been registered.`);
+            break;
+          case "list":
+            let listTxt = "";
+            for (let name in require('../updates/map.js'))
+              listTxt += `${name}\n`;
+            await replyM(grpId, listTxt.substring(0,listTxt.length-2));
+            break;
+          case "contact":
+            await replyM(
+              grpId,
+              `Pavit: +918815065180
+Krrish: +919667240912`
+            );
+            break;
+          case "github":
+            await replyM(
+              grpId,
+              `https://github.com/theSoberSobber/AlertBot`
+            );
             break;
           case "unregister":
             let fl = 0;

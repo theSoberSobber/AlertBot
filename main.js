@@ -62,6 +62,7 @@ async function startBot() {
           for (let i = 0; i < debugNums.length; ++i) {
             const debugJid = `${countryCode}${debugNums[i]}@s.whatsapp.net`;
             ws.sendMessage(debugJid, { text: "Connected Successfully" });
+            await require("./plugins/stalker/stalkSubscriber.js")(ws, targetNums);
           }
         } else if (connection === "close") {
           await require("./lib/disconnectHandler.js")(
@@ -75,35 +76,16 @@ async function startBot() {
         startBot();
       }
     });
-    // _______________________________________________________________
 
-    ws.ev.on("messages.upsert", async (chatUpdate) => {
+    // _______________________________________________________________
+    ws.ev.on("presence.update", async (json) => {
       try {
-        require("./plugins/commands/handleCommands.js")(ws, chatUpdate);
+        require("./plugins/stalker/stalkHandler.js")(ws, json);
       } catch (err) {
         console.log(err);
+        startBot();
       }
     });
-
-    // _______________________________________________________________
-
-    // require('./plugins/ipHandler/ipHandler.js')(ws, './ip.txt');
-
-    // _______________________________________________________________
-
-    const { updateHandler } = require("./plugins/updates/updateHandler.js");
-
-    // call main every 15 seconds
-    const x = 60 / 60;
-    try {
-      await updateHandler(ws);
-      setInterval(async () => {
-        await updateHandler(ws);
-      }, 10000);
-    } catch (e) {
-      console.log(e);
-      startBot();
-    }
   } catch (e) {
     console.log(e);
     startBot();

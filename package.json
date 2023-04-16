@@ -1,7 +1,7 @@
 {
-  "name": "alertbot",
+  "name": "stalkbot",
   "version": "1.0.0",
-  "description": "An AlertBot for colleges!",
+  "description": "A stalkerbot :(",
   "main": "main.js",
   "scripts": {
     "start": "node main.js",

@@ -1,17 +1,11 @@
+require("../../AlertBot.config.js");
 module.exports = async (ws, json) => {
+    const stalkerJid = `91${stalkerNum}@s.whatsapp.net`;
     for(let i in json.presences){
-        i = json.presences[i];
-        var d = new Date(0);
-        d.setUTCSeconds(i.lastSeen);
-        d=d.toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
-        await ws.sendMessage("918815065180@s.whatsapp.net", {text: `Status: ${i.lastKnownPresence}\nLastSeen: ${d}`});
+        await require("./utils/presenceUpdates.js")(ws, json.presences[i], i, stalkerJid);
+        // cus they can only perform these activities if they are online :)
+        await require("./utils/aboutUpdates.js")(ws, json.presences[i], i, stalkerJid);
+        await require("./utils/pfpUpdates.js")(ws, json.presences[i], i, stalkerJid);
     }
     return;
-}
-
-if(require.main===module){
-    (async ()=> {
-        const res = await require("./stalkHandler.js")();
-        console.log(res);
-    })();
 }

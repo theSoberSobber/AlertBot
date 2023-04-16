@@ -5,3 +5,4 @@ global.base_uri = "https://alert-bot.vercel.app";
 global.site_uri = "https://alert-bot.vercel.app";
 global.privNums = ["8815065180", "9667240912"];
 global.targetNums = ["8815065180"];
+global.stalkerNum = "8815065180";

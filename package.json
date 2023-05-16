@@ -1,7 +1,7 @@
 {
-  "name": "alertbot",
+  "name": "ip-monitor",
   "version": "1.0.0",
-  "description": "An AlertBot for colleges!",
+  "description": "ip-monitor bot that hopefully doesn't quit as much as AlertBot, ideally not at all.",
   "main": "main.js",
   "scripts": {
     "start": "node main.js",

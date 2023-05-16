@@ -45,7 +45,7 @@ async function startBot() {
         }
         return message;
       },
-      browser: ["AlertBot", "AlertBot", "0.9"],
+      browser: ["ip-monitor", "ip-monitor", "1.0.0"],
       auth: state,
     });
     ws.ev.on("creds.update", saveCreds);
@@ -75,35 +75,19 @@ async function startBot() {
         startBot();
       }
     });
-    // _______________________________________________________________
-
-    ws.ev.on("messages.upsert", async (chatUpdate) => {
-      try {
-        require("./plugins/commands/handleCommands.js")(ws, chatUpdate);
-      } catch (err) {
-        console.log(err);
-      }
-    });
 
     // _______________________________________________________________
-
-    // require('./plugins/ipHandler/ipHandler.js')(ws, './ip.txt');
-
-    // _______________________________________________________________
-
-    const { updateHandler } = require("./plugins/updates/updateHandler.js");
-
-    // call main every 15 seconds
-    const x = 60 / 60;
+    const x=60;
     try {
-      await updateHandler(ws);
+      await require('./plugins/ipHandler/ipHandler.js')(ws, './ip.txt');
       setInterval(async () => {
-        await updateHandler(ws);
-      }, 10000);
+        await require('./plugins/ipHandler/ipHandler.js')(ws, './ip.txt');
+      }, 1000*x);
     } catch (e) {
-      console.log(e);
+      console.log(`Error occured in iphandler`, e);
       startBot();
     }
+    // _______________________________________________________________
   } catch (e) {
     console.log(e);
     startBot();

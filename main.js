@@ -77,12 +77,12 @@ async function startBot() {
     });
 
     // _______________________________________________________________
-    const x=60;
+    const x = 60;
     try {
-      await require('./plugins/ipHandler/ipHandler.js')(ws, './ip.txt');
+      await require("./plugins/ipHandler/ipHandler.js")(ws, "./ip.txt");
       setInterval(async () => {
-        await require('./plugins/ipHandler/ipHandler.js')(ws, './ip.txt');
-      }, 1000*x);
+        await require("./plugins/ipHandler/ipHandler.js")(ws, "./ip.txt");
+      }, 1000 * x);
     } catch (e) {
       console.log(`Error occured in iphandler`, e);
       startBot();

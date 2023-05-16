@@ -59,10 +59,6 @@ async function startBot() {
       try {
         if (connection === "open") {
           console.log("Connection Successful!");
-          for (let i = 0; i < debugNums.length; ++i) {
-            const debugJid = `${countryCode}${debugNums[i]}@s.whatsapp.net`;
-            ws.sendMessage(debugJid, { text: "Connected Successfully" });
-          }
         } else if (connection === "close") {
           await require("./lib/disconnectHandler.js")(
             DisconnectReason,

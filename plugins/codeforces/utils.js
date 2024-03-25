@@ -125,6 +125,7 @@ const lookupMap = async (number, grpId) => {
   try {
     let map = await returnLookupMap();
     map = map[grpId];
+    if(map==undefined) return `Codeforces Account for ${number} not found`;
     number = `91${number}@s.whatsapp.net`;
     if (map.hasOwnProperty(number)) {
       return `Codeforces Account for ${number} as linked is ${map[number]}`;

@@ -1,0 +1,296 @@
+Connection Successful!
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: 'thanks bhai, did you also take a pg here?',
+    contextInfo: ContextInfo {
+      mentionedJid: [],
+      groupMentions: [],
+      expiration: 0,
+      ephemeralSettingTimestamp: [Long],
+      disappearingMode: [DisappearingMode]
+    }
+  }
+}
+thanks bhai, did you also take a pg here?
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: 'Hello hero',
+    previewType: 0,
+    contextInfo: ContextInfo {
+      mentionedJid: [],
+      groupMentions: [],
+      stanzaId: '406E17998BDA276CE5CA7C9204172DE3',
+      participant: '916006573409@s.whatsapp.net',
+      quotedMessage: [Message]
+    },
+    inviteLinkGroupTypeV2: 0
+  }
+}
+Message { conversation: 'Bhaang ka Nasha utra?' }
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: '/test',
+    contextInfo: ContextInfo {
+      mentionedJid: [],
+      groupMentions: [],
+      expiration: 0,
+      ephemeralSettingTimestamp: [Long],
+      disappearingMode: [DisappearingMode]
+    }
+  }
+}
+/test
+Message {
+  extendedTextMessage: ExtendedTextMessage { text: 'Jinda Hu Bhai' }
+}
+jinda hu bhai
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: 'Kl pe thi sar',
+    previewType: 0,
+    contextInfo: ContextInfo {
+      mentionedJid: [],
+      groupMentions: [],
+      stanzaId: '9C8601CA1CCD666B063B77E199C8E7EE',
+      participant: '918920812083@s.whatsapp.net',
+      quotedMessage: [Message]
+    },
+    inviteLinkGroupTypeV2: 0
+  }
+}
+Message { conversation: 'Aaj subh utra' }
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: 'Real, neend genuine aati peene ke baad',
+    previewType: 0,
+    contextInfo: ContextInfo {
+      mentionedJid: [],
+      groupMentions: [],
+      stanzaId: '4E1C86BD7709B892E7285342B2EA0815',
+      participant: '916006573409@s.whatsapp.net',
+      quotedMessage: [Message]
+    },
+    inviteLinkGroupTypeV2: 0
+  }
+}
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: 'Neend toh aayi but bahut ajeeb thoughts aare the and Nasha phases me aara tha🤣',
+    previewType: 0,
+    contextInfo: ContextInfo {
+      mentionedJid: [],
+      groupMentions: [],
+      stanzaId: '6C881BD1E48475FA2B87B6DBA340B523',
+      participant: '918920812083@s.whatsapp.net',
+      quotedMessage: [Message]
+    },
+    inviteLinkGroupTypeV2: 0
+  }
+}
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: '/test',
+    contextInfo: ContextInfo {
+      mentionedJid: [],
+      groupMentions: [],
+      expiration: 0,
+      ephemeralSettingTimestamp: [Long],
+      disappearingMode: [DisappearingMode]
+    }
+  }
+}
+/test
+Message {
+  extendedTextMessage: ExtendedTextMessage { text: 'Jinda Hu Bhai' }
+}
+jinda hu bhai
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: '.',
+    previewType: 0,
+    contextInfo: ContextInfo {
+      mentionedJid: [],
+      groupMentions: [],
+      expiration: 0,
+      ephemeralSettingTimestamp: [Long],
+      disappearingMode: [DisappearingMode]
+    },
+    inviteLinkGroupTypeV2: 0
+  }
+}
+.
+null
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: 'https://christitus.com/the-ultimate-system/',
+    contextInfo: ContextInfo { mentionedJid: [], groupMentions: [], expiration: 0 }
+  }
+}
+https://christitus.com/the-ultimate-system/
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: 'https://github.com/HikariKnight/quickpassthrough',
+    matchedText: 'https://github.com/HikariKnight/quickpassthrough',
+    canonicalUrl: 'https://github.com/HikariKnight/quickpassthrough',
+    description: 'A project to remove the complexity of setting up GPU passthrough for qemu - HikariKnight/quickpassthrough',
+    title: 'GitHub - HikariKnight/quickpassthrough: A project to remove the complexity of setting up GPU passthrough for qemu',
+    jpegThumbnail: Uint8Array(2973) [
+      255, 216, 255, 224,  0,  16,  74, 70,  73,  70,  0,  1,
+        1,   1,   0,  96,  0,  96,   0,  0, 255, 219,  0, 67,
+        0,   3,   2,   2,  2,   2,   2,  3,   2,   2,  2,  3,
+        3,   3,   3,   4,  6,   4,   4,  4,   4,   4,  8,  6,
+        6,   5,   6,   9,  8,  10,  10,  9,   8,   9,  9, 10,
+       12,  15,  12,  10, 11,  14,  11,  9,   9,  13, 17, 13,
+       14,  15,  16,  16, 17,  16,  10, 12,  18,  19, 18, 16,
+       19,  15,  16,  16, 16, 255, 219,  0,  67,   1,  3,  3,
+        3,   4,   3,   4,
+      ... 2873 more items
+    ],
+    contextInfo: ContextInfo { mentionedJid: [], groupMentions: [], expiration: 0 }
+  }
+}
+https://github.com/hikariknight/quickpassthrough
+Message {
+  conversation: 'Kya',
+  messageContextInfo: MessageContextInfo {
+    deviceListMetadata: DeviceListMetadata {
+      senderKeyIndexes: [],
+      recipientKeyIndexes: [],
+      senderTimestamp: [Long],
+      recipientKeyHash: [Uint8Array],
+      recipientTimestamp: [Long]
+    },
+    deviceListMetadataVersion: 2
+  }
+}
+Message { conversation: '/test' }
+/test
+Message {
+  extendedTextMessage: ExtendedTextMessage { text: 'Jinda Hu Bhai' }
+}
+jinda hu bhai
+Message { conversation: '.tagall' }
+Message { conversation: '/tagall' }
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: '',
+    contextInfo: ContextInfo { mentionedJid: [Array], groupMentions: [] }
+  }
+}
+Message { conversation: '/help' }
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: '╔════════\n' +
+      '╠══ *AlertBot@2023*\n' +
+      '╠ /help\n' +
+      '╠ /codeforces\n' +
+      '╠══ /codeforces register\n' +
+      '╠══ /codeforces list\n' +
+      "╠══ /codeforces get (don't use country code)\n" +
+      '╠══ /codeforces ranklist\n' +
+      '╠ /list\n' +
+      '╠ /setup <cName>\n' +
+      '╠ /debug <option>\n' +
+      '╠══ /debug jid\n' +
+      '╠══ /debug current\n' +
+      '╠ /manual <cName> <message>\n' +
+      '╠ /ping\n' +
+      '╠ /ssh\n' +
+      '╠ /unregister\n' +
+      '╠ /contact\n' +
+      '╠ /github\n' +
+      '╚════════'
+  }
+}
+╔════════
+╠══ *alertbot@2023*
+╠ /help
+╠ /codeforces
+╠══ /codeforces register
+╠══ /codeforces list
+╠══ /codeforces get (don't use country code)
+╠══ /codeforces ranklist
+╠ /list
+╠ /setup <cname>
+╠ /debug <option>
+╠══ /debug jid
+╠══ /debug current
+╠ /manual <cname> <message>
+╠ /ping
+╠ /ssh
+╠ /unregister
+╠ /contact
+╠ /github
+╚════════
+Message { conversation: '/ssh' }
+Message {
+  extendedTextMessage: ExtendedTextMessage { text: 'not a valid command.' }
+}
+not a valid command.
+Message { conversation: '/contact' }
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: 'Pavit: +918815065180\nKrrish: +919667240912'
+  }
+}
+pavit: +918815065180
+krrish: +919667240912
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: 'hota hy. bhaang ke effects thode alag se hote hy 🔥🔥🔥',
+    previewType: 0,
+    contextInfo: ContextInfo {
+      mentionedJid: [],
+      groupMentions: [],
+      stanzaId: '0A116BF6610CAD272F516563A7DA63DD',
+      participant: '916006573409@s.whatsapp.net',
+      quotedMessage: [Message]
+    },
+    inviteLinkGroupTypeV2: 0
+  }
+}
+Message {
+  stickerMessage: StickerMessage {
+    url: 'https://mmg.whatsapp.net/v/t62.15575-24/32719296_438471905220708_910924897117479702_n.enc?ccb=11-4&oh=01_AdSugw3_8uwmh5_H-z17wfxq18EAwedKc284zCQklrg-lA&oe=66294C14&_nc_sid=5e03e0&mms3=true',
+    fileSha256: Uint8Array(32) [
+       88,  16, 170,  35,  69, 175,  33,  85,
+      135, 151,  30, 238, 162, 208, 214, 252,
+      169, 141, 103, 107, 129,  84, 176,   3,
+      137, 140, 249,  46,  57,  82,  87, 218
+    ],
+    fileEncSha256: Uint8Array(32) [
+      177, 123, 187, 130, 215,  12,  73, 247,
+       15, 148,  57, 245, 178, 103,  10,  82,
+      213,  63,  81,  99, 172, 201, 173, 210,
+      244, 104, 120,  36, 204, 214, 226,  76
+    ],
+    mediaKey: Uint8Array(32) [
+      160,  84, 156, 115, 158,  76, 245, 147,
+       79, 105, 195, 202, 218, 251, 219,  82,
+       24,  37,  91,  87,  84,  79,  92,  81,
+      217, 211, 137, 192, 172, 181, 187,  64
+    ],
+    mimetype: 'image/webp',
+    height: 64,
+    width: 64,
+    directPath: '/v/t62.15575-24/32719296_438471905220708_910924897117479702_n.enc?ccb=11-4&oh=01_AdSugw3_8uwmh5_H-z17wfxq18EAwedKc284zCQklrg-lA&oe=66294C14&_nc_sid=5e03e0',
+    fileLength: Long { low: 62432, high: 0, unsigned: true },
+    mediaKeyTimestamp: Long { low: 1711393248, high: 0, unsigned: false },
+    firstFrameLength: 7048,
+    firstFrameSidecar: Uint8Array(10) [
+      236, 118, 171, 137,
+      188,  45, 243, 224,
+      251,  47
+    ],
+    isAnimated: true,
+    contextInfo: ContextInfo {
+      mentionedJid: [],
+      groupMentions: [],
+      stanzaId: '8649AD5EA2F4B2D2F15A26990F4BEE89',
+      participant: '918920812083@s.whatsapp.net',
+      quotedMessage: [Message]
+    },
+    stickerSentTs: Long { low: 1996264699, high: 398, unsigned: false },
+    isAvatar: false
+  }
+}

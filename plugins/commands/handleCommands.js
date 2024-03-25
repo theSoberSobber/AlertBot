@@ -43,22 +43,25 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
     senderJid = messageObj.key.participant;
     groupMetadata = await ws.groupMetadata(grpId).catch((e) => {});
   }
-  if (messageObj.messageStubParameters?.length) {
-    console.log(grpId);
-    const grpName = messageObj.messageStubParameters[0];
-    await replyM(
-      grpId,
-      `Alert Bot has been successfully added to ${grpName}!
-Use /help to proceed further ✨
-Use /register to register your Codeforces Account
-Use /contact to report any Errors.`
-    );
-    return;
-  }
+  if(messageObj==null) return;
   messageObj = messageObj.message;
+  console.log(messageObj);
   // ________________________________________________
   // API ENDS HERE
   // ________________________________________________
+  if (fromMe) {
+    if(messageObj?.conversation || messageObj?.extendedTextMessage?.text) {
+      let body = messageObj?.conversation ? messageObj?.conversation?.toLowerCase() : messageObj?.extendedTextMessage?.text?.toLowerCase();
+      console.log(body);
+      if((await checkAndParse(body))){
+        const {command, args} = await checkAndParse(body);
+        if (command=="test"){
+          await replyM(senderJid, "Jinda Hu Bhai");
+          return;
+        }
+      }
+    }
+  }
   if (!fromMe) {
     if (messageObj?.conversation) {
       // normal text
@@ -160,6 +163,14 @@ Use /contact to report any Errors.`
                 await replyM(grpId, vMsg);
                 await sleep(wait*1000);
                 let result = await getVerificationResult(rUrl, args[1]);
+                if(result == -1){
+                  await replyM(grpId, `Handle named ${args[1]} not found.`);
+                  return;
+                }
+                if(result==-2){
+                  await replyM(grpId, `Codeforces API is down, Please try again later or use /contact if you believe this to be a genuine error.`);
+                  return;
+                }
                 // console.log(result);
                 await handleVerificationResult(result, senderJid, grpId, args[1]);
                 if(result) await replyM(grpId, `Successfully Linked ${args[1]} to ${senderJid}`);
@@ -200,6 +211,14 @@ Use /contact to report any Errors.`
                   }
                   // ranklist of contest se sare bando jinhone participate kara unki ranks
                   const rankList = await getRankList(grpId, args[1]);
+                  if(rankList==-1){
+                    await replyM(grpId, `Internal Error, please use /contact to report`);
+                    return;
+                  }
+                  if(ranklist==-2){
+                    await replyM(grpId, `Codeforces API is Down, Please try again later`);
+                    return;
+                  }
                   let text = `RankList of Group for Round number ${args[1]}:\n`;
                   for (handle in rankList){
                     // already sorted according to ranks
@@ -232,6 +251,11 @@ Use /contact to report any Errors.`
             let helpTxt = `╔════════
 ╠══ *AlertBot@2023*
 ╠ ${prefix}help
+╠ ${prefix}codeforces
+╠══ ${prefix}codeforces register
+╠══ ${prefix}codeforces list
+╠══ ${prefix}codeforces get (don't use country code)
+╠══ ${prefix}codeforces ranklist
 ╠ ${prefix}list
 ╠ ${prefix}setup <cName>
 ╠ ${prefix}debug <option>
@@ -293,11 +317,7 @@ Use /contact to report any Errors.`
             await replyM(grpId, listTxt.substring(0, listTxt.length - 1));
             break;
           case "contact":
-            await replyM(
-              grpId,
-              `Pavit: +918815065180
-Krrish: +919667240912`
-            );
+            await replyM(grpId, `Pavit: +918815065180`);
             break;
           case "github":
             await replyM(grpId, `https://github.com/theSoberSobber/AlertBot`);
@@ -334,14 +354,17 @@ Krrish: +919667240912`
     if (messageObj?.extendedTextMessage) {
       // extendedTextMessage
       let body = messageObj.extendedTextMessage.text.toLowerCase();
+      return;
     }
     if (messageObj?.videoMessage) {
       // video message
       let body = messageObj.videoMessage.caption.toLowerCase();
+      return;
     }
     if (messageObj?.imageMessage) {
       // image message
       let body = messageObj.imageMessage.caption.toLowerCase();
+      return;
     } else return;
   }
 };

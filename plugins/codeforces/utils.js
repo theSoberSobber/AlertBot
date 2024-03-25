@@ -11,7 +11,7 @@ const getRandomQuestion = async () => {
     const responseData = await response.json();
 
     if (responseData.status !== "OK") {
-      throw new Error("Invalid response status");
+      return -1;
     }
 
     const problems = responseData.result.problems;
@@ -20,7 +20,7 @@ const getRandomQuestion = async () => {
 
     return `https://codeforces.com/problemset/problem/${problem.contestId}/${problem.index}`;
   } catch (error) {
-    throw new Error("Server error");
+    return -2;
   }
 };
 
@@ -39,7 +39,7 @@ const getRankList = async (grpId, roundNumber) => {
     const contestData = await response.json();
 
     if (contestData.status !== "OK") {
-      throw new Error("Invalid response status");
+      return -1;
     }
 
     const rows = contestData.result.rows;
@@ -63,7 +63,7 @@ const getRankList = async (grpId, roundNumber) => {
 
   } catch (error) {
     console.error("Error fetching submission data:", error);
-    throw new Error("Server error");
+    return -2;
   }
 };
 
@@ -74,7 +74,7 @@ const getVerificationResult = async (url, handle) => {
     const submissionData = await response.json();
 
     if (submissionData.status !== "OK") {
-      throw new Error("Invalid response status");
+      return -1;
     }
 
     const latestSubmission = submissionData.result[0];
@@ -86,7 +86,7 @@ const getVerificationResult = async (url, handle) => {
     }
   } catch (error) {
     console.error("Error fetching submission data:", error);
-    throw new Error("Server error");
+    return -2;
   }
 };
 

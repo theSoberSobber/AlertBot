@@ -3,7 +3,7 @@ const {
   useMultiFileAuthState,
   jidNormalizedUser,
   DisconnectReason,
-} = require("@adiwajshing/baileys");
+} = require("@whiskeysockets/baileys");
 
 const pino = require("pino");
 
@@ -85,25 +85,6 @@ async function startBot() {
       }
     });
 
-    // _______________________________________________________________
-
-    // require('./plugins/ipHandler/ipHandler.js')(ws, './ip.txt');
-
-    // _______________________________________________________________
-
-    const { updateHandler } = require("./plugins/updates/updateHandler.js");
-
-    // call main every 15 seconds
-    const x = 60 / 60;
-    try {
-      await updateHandler(ws);
-      setInterval(async () => {
-        await updateHandler(ws);
-      }, 10000);
-    } catch (e) {
-      console.log(e);
-      startBot();
-    }
   } catch (e) {
     console.log(e);
     startBot();

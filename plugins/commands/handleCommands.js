@@ -1,6 +1,8 @@
 const prefix = "/";
 const { writeFile, readFile } = require("fs/promises");
 
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 const checkAndParse = async (body) => {
   if (body[0] == prefix) {
     let command = body.replace(prefix, "").trim().split(/ +/).shift();
@@ -48,8 +50,8 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
       grpId,
       `Alert Bot has been successfully added to ${grpName}!
 Use /help to proceed further ✨
-Use /list to see the list of currently supported colleges.
-If your college isn't in the list, use /contact to inform us about it.`
+Use /register to register your Codeforces Account
+Use /contact to report any Errors.`
     );
     return;
   }
@@ -76,6 +78,11 @@ If your college isn't in the list, use /contact to inform us about it.`
             let helpTxt = `╔════════
 ╠══ *AlertBot@2023*
 ╠ ${prefix}help
+╠ ${prefix}codeforces
+╠══ ${prefix}codeforces register
+╠══ ${prefix}codeforces list
+╠══ ${prefix}codeforces get (don't use country code)
+╠══ ${prefix}codeforces ranklist
 ╠ ${prefix}list
 ╠ ${prefix}setup <cName>
 ╠ ${prefix}debug <option>
@@ -99,8 +106,7 @@ If your college isn't in the list, use /contact to inform us about it.`
           case "contact":
             await replyM(
               senderJid,
-              `Pavit: +918815065180
-Krrish: +919667240912`
+              `Pavit: +919770483089`
             );
             break;
           case "github":
@@ -138,6 +144,81 @@ Krrish: +919667240912`
       if ((await checkAndParse(body)) && isGrp) {
         const { command, args } = await checkAndParse(body);
         switch (command) {
+          case "codeforces":
+            let {getRandomQuestion, getVerificationResult, handleVerificationResult, returnLookupMap, lookupMap, getRankList} = require("../codeforces/utils.js");
+            switch(args[0]){
+              case "register":
+                {
+                if(args.length>2){
+                  await replyM(grpId, "too many arguments.");
+                  return;
+                }
+                // console.log("Fetching Random Question");
+                let rUrl = await getRandomQuestion();
+                const wait = 30;
+                let vMsg = `Hey ${args[1]}! Please submit a Compilation Error at ${rUrl} in under ${wait} seconds.`
+                await replyM(grpId, vMsg);
+                await sleep(wait*1000);
+                let result = await getVerificationResult(rUrl, args[1]);
+                // console.log(result);
+                await handleVerificationResult(result, senderJid, grpId, args[1]);
+                if(result) await replyM(grpId, `Successfully Linked ${args[1]} to ${senderJid}`);
+                else await replyM(grpId, `Verification for ${args[1]} by ${senderJid} Failed. Please Try Again.`);
+              }
+                break;
+
+              case "get":
+                {
+                if(args.length>2){
+                  await replyM(grpId, "too many arguments.");
+                  return;
+                }
+                const num = args[1];
+                const lookupResponse = await lookupMap(num, grpId);
+                await replyM(grpId, lookupResponse);
+                }
+                break;
+              case "list":
+                {
+                if(args.length>1){
+                  await replyM(grpId, "too many arguments.");
+                  return;
+                }
+                const lookupTable = await returnLookupMap();
+                let text = "List of Linked Handles:\n";
+                for(let number in lookupTable[grpId]){
+                  text += `${number}: ${lookupTable[grpId][number]}\n`;
+                }
+                await replyM(grpId, text.substring(0, text.length - 1));
+                }
+                break;
+              case "ranklist":
+                {
+                  if(args.length>2){
+                    await replyM(grpId, "too many arguments.");
+                    return;
+                  }
+                  // ranklist of contest se sare bando jinhone participate kara unki ranks
+                  const rankList = await getRankList(grpId, args[1]);
+                  let text = `RankList of Group for Round number ${args[1]}:\n`;
+                  for (handle in rankList){
+                    // already sorted according to ranks
+                    text+=`${handle}: ${rankList[handle]["rank"]}`;
+                    text+=" (";
+                    for (question in rankList[handle]["questions"]){
+                      text+=`${rankList[handle]["questions"][question]},`;
+                    }
+                    text = text.substring(0, text.length - 1);
+                    text+=")\n";
+                  }
+                  await replyM(grpId, text.substring(0, text.length - 1));
+                }
+                break;
+              default:
+                await replyM("Invalid subcommand in command codeforces.");
+                return;
+            }
+            break;
           case "ping":
             await replyM(grpId, "pong.");
             break;

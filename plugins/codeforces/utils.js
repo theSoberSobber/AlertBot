@@ -36,6 +36,7 @@ const getRankList = async (grpId, roundNumber) => {
   url = url.substring(0, url.length - 1);
   try {
     const response = await fetch(url);
+    console.log(response);
     const contestData = await response.json();
 
     if (contestData.status !== "OK") {
@@ -72,6 +73,8 @@ const getVerificationResult = async (url, handle) => {
   try {
     const response = await fetch(submissionUrl);
     const submissionData = await response.json();
+
+    console.log(submissionData);
 
     if (submissionData.status !== "OK") {
       return -1;

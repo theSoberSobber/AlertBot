@@ -5,3 +5,4 @@ yarn.lock
 .vercel
 package-lock.json
 .env
+*.txt

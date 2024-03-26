@@ -1,1 +1,1 @@
-node main.js > logs 2>&1
+node spawner.js

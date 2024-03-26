@@ -175,7 +175,7 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
                 }
                 // console.log("Fetching Random Question");
                 let rUrl = await getRandomQuestion();
-                const wait = 30;
+                const wait = 60;
                 let vMsg = `Hey ${args[1]}! Please submit a Compilation Error at ${rUrl} in under ${wait} seconds.`
                 await replyM(grpId, vMsg);
                 await sleep(wait*1000);
@@ -232,7 +232,7 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
                     await replyM(grpId, `Internal Error, please use /contact to report`);
                     return;
                   }
-                  if(ranklist==-2){
+                  if(rankList==-2){
                     await replyM(grpId, `Codeforces API is Down, Please try again later`);
                     return;
                   }

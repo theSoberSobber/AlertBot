@@ -1,0 +1,427 @@
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █ ▄█▄██▄▀█  █ ██ ▄▀▄▀▄▄ ██▄██▄▀▄▄▄▄ ▀██ ▄▄▄▄▄ █
+█ █   █ █ ██▀ ▀█ ▄▄▄█  ▀▄▀ ▀▀█▄▀▀█▄▀▀▄▄▀▄▀▄▀▄▀█ █   █ █
+█ █▄▄▄█ █▀▄ ▀█▄▄ █▀ ▀ ▄ █ ▄▄▄ ▄▄▀▄▀▀▀ █▄█▄█ ███ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄█▄█▄█ ▀▄▀▄▀ ▀▄▀ █▄█ █ █▄█ █ █ █▄▀ █▄█▄▄▄▄▄▄▄█
+█ ▄██ ▄▄▀█   ▄▀▀▀▀▄ ▄▀▄▀▀▄▄ ▄ █ █▄▀█▄▄█ ██▀ █▀▀█▄█    █
+██▄▀ ▀ ▄▄███▄▀  ▄██ █ ▀▄▀▄ ▄█▄█▄ ▄▄▀▄ █▄▄▄ ▀ █ ▄█▀▄▄▀▄█
+█▄█▀█▄█▄▄▀▀ ▄▄▀ ▀▄█▄▄▀▄██ ▄▀▄▀ ▀▀▄ █▀▄█▀ █ ▀▄ ▀██ ▀▀███
+█▀▀  ▄▀▄▀▄██ ▄▀█▀▄▄▀ █▀  ▄▀█▀▄▄▄█  █▄ ▄▄▄█▄▀▄▄█▀▄▀ ██ █
+██▄▄ ▄ ▄ ▄ ▀▀█▄ ▄█▀▄▄ ▄▀ ▄ ▀▀ ▀▀▀▄▀▄  █ █▀▀ █  █  ▄ █▄█
+█▄▀█▀█▄▄▄  █  █▀▀ █ █▄███▄▀▄█▄▄▄▀▀▄█  ▄█ █ ▄██ ▄▄ ▀█▀ █
+█▄▀▄ █ ▄▀▀▄ ▄ █ ▀▄ ▄▄▀ ▀ █▄    ▀█  ▄▀ ▄▀ █ ▀█▀▀██ █▀▀ █
+██  █ ▀▄ ▀  ▄█▄ ▀▄▄▄█ █ ▀▄▀▄█ █▀ ██▀██▄▄ ▀   █▄▀█▄ █▄ █
+█▄▀█▄ ▄▄▄ █▄▄▀▀▀▀▀  ▄ ▄▀▄ ▄▄▄ ▀▀▀▄▀▄  ▄  ▀  █ ▄▄▄  ▀▀ █
+█▄ ▀█ █▄█ ▀▀ ██ ▄█ ▀█ ▄▄█ █▄█ █▄█▄█ ▄███▀█▀▀█ █▄█  █  █
+█▄ ▄▄ ▄▄  ▀█▀█▀▄ █ ▄█▀ ▀█▄▄▄ ▄  █▄ ▄▄▄▄▀▄▀▄ ▀▄▄▄   ██▀█
+██▀▀█▄▄▄▄█▀▀█▀▀█▀▀▄▄█▄ ▄▄  ▀▄  █▄▀▀ ▄     ▀▄▀▀█▄██ ▄█ █
+█ ▄▀ ██▄▀▄▄▀▄▄▄ ▄█▀▄█  █ ▀▄▄▀▀  █ ▄▄ ▄▀ ▄▀▀▀▄ ▄▄█▀ ▀█▄█
+█▄█▄▀▄▀▄▄▄ ▄ ▄ █▀ ▄█▄█▄  ▄▄▀█ ▄█▄▀▀▀█▀ ▄▀▄ ▄▀▀█▄█▀▀▄▀▄█
+███▀█▄▀▄▄▀█ ▄▄▀▄ ▄▀▄▀▀▄▀▀ ▄▄█▀█ ▀  ▄▄ █  ▀   ▄▀▄  ▄ ▀▀█
+█▄█ ▀ █▄▄ ▄ █▀▄  ██▄█ ▄  ▀▄▀▄▀█  ▄ █▄  █▀ ▄ ▀ ▀  █▀▄▄ █
+█▀  ▀▄▀▄  ██ ▄▀▀▀▀█ ▄▀▀▀▄█▀▄█▄█ █▄▄█▄ █▀▄█▀▀ ▀██▄▀ ▀▀ █
+█▄ ▀▄▄▄▄██▄▄█▀▄█▄█ ▄█▄▄█▄▀▄▀▄▀▀ ▄ ▀█▀█▄▀▄▄ ▀█ ▀ ▄█ █▄ █
+████▄██▄█▀▀ █▄ ▄ ▄ ▄█▀▄█▄ ▄▄▄   ▄ ▀▄  ▄  ▀  ▄ ▄▄▄ ███▄█
+█ ▄▄▄▄▄ █▀▄ █▀ █▄█▀ █▀▄▀█ █▄█   ▄  █▀██▀▄▄▀██ █▄█  █▀▄█
+█ █   █ █▄▀▄▀ ▄ ▄█▄▀█  ██ ▄   ▀ █ ▄█    ▀▀  ▄▄    █▀ ▄█
+█ █▄▄▄█ █▀▄██▀█ ▀ ▄█▀█▀█  ▄ ▀▀  ▀▀█▀██▄▄█▄▀ ▄▀ ▀▀▀▄▄▀▀█
+█▄▄▄▄▄▄▄█▄▄▄▄█▄▄█▄▄▄██▄█▄▄▄█▄█▄█▄▄▄▄▄▄▄████▄▄▄▄▄████▄██
+
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▄ ▀██ ▀ █▀ ▄▀ █  ██ ▄▄ ████▄█▄█ ██ ▀██ ▄▄▄▄▄ █
+█ █   █ █  █▄█ ▄█ █▀  ▄▄▀█▀█ ████▄▀▀▀ █▀ ██▀▄▀█ █   █ █
+█ █▄▄▄█ █▄▀█▄██▀ █▀ ▄▄▀▄▄ ▄▄▄ ██ █▄█ █▀ ▀█▀ ███ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄█▄█▄█▄▀▄▀▄▀ ▀ ▀ █▄█ ▀ █ █▄▀▄▀ ▀▄▀▄█▄█▄▄▄▄▄▄▄█
+█▄ ▄ █▀▄▀ ▄▄███▄█ ▀█ ▄▄ ▀▄ ▄  ▀ █▀██ ▀▀▄▄▄  ▀█▄██▄▄ ▀▄█
+█▀▄▀█▀▄▄▀█   ▀ ▀▀▄ █ ██▄▀▄█▄▄▀▀█▄ ▄█ ▀  █▄▀▄ ██▀ ▄██▄▀█
+█▀  ▄ █▄█▄▄ █ ▄█ █ ▄ ▀█▀█▄▀▀█▀█▄██▀▄▀   ████▄ ▀█  ▀▄ ▀█
+█ ▄▀▄▄█▄▀█▀█ █ █▀ ▀▀▀████  █▄▄▀  █▀█ ██ ▄ ▀ ██▄ █▀ █▄ █
+█ ▀ ▀▀▄▄▄▀▀   █▄▄▀██ █▄█▀▀ █▀▄▀█▄▄▀▀▀██▄▀▀ ▄█▄▀ ▀███▀▄█
+█▀▀▄ ▀ ▄█ █▄█▄▄▄███▀ ▀▄▀██  █▀█▄ ▄▄ ▄▀█▄▄▄▀█ █▄█▀█ ▀███
+█▄▀ █▄▀▄█  ▀██▀█▄█▄██▄▀ ███▀█▀█ ▀███▄▀ █  ▄▀ ▄█▄▄▀▄█▀▄█
+█ ▄██▄▄▄█ ▀▄▀▄ ▀▄▄█▀   ▀█▄██▀██ ▀  ▀▄▄██▄██▄  ▄█▀▄▄█ ▀█
+█▀█▄█ ▄▄▄   ██▄  ▀█ ▄  ▀  ▄▄▄ ▄▄▄█ █  ▀ ▀█▄██ ▄▄▄ ▀  ██
+█▀ ▀▀ █▄█  ▄ ▄█▀█▀ █ ▄█▀  █▄█ █ ▄▀▀▀▀▀██▀   █ █▄█  ▄ ▄█
+█ █▄   ▄  ▀▀▀ ▄▄█ ▀▀ █▄▀▀  ▄ ▄ █  ▀▀█▀██▄█ █▄ ▄  ▄  ▀▀█
+█▀▀▄█▄ ▄██▀▄▀▀▀▀▀▄▀▄▄ ██▀▀█  ▄▄▀█▀▄█▄▄██ ▀▀  █▀██▄▄ █▀█
+█ ▀ ▀ ▀▄ ▄▀▀▀▄ █ ▄▀█▀█ ▄▀ ██  ▀ █▀▄▄▄█ ▄▄ ▀   █ █ █▄ ▄█
+█ ▀▀ █▀▄██▄  ▀█▄▄▀ ▀ ▄▀█  ▄█▀▀▄▄ ▄▀█▄██  █▄▄▄ ▀█▀▀▄▄▄██
+██▀ ▄▄ ▄  ████ ▀ █▄ ▀ ██▀▀▀█ █ █▄▀ █   ▀██▄▄██ ▄▄█▄  ██
+█ ██▄█▄▄ ▀█▄ ██ █▄  ▄▄█▄██ ▀▄█ ▄█▄▄ ▀▀ ▀▄ ▀  ▀  ▄ ▀▄▄▄█
+██▄█▄█ ▄ █▀█ ▀ █▀█▄█ █ ▀ ▀  ██ █  ▄▀█▀██▀▀▀███▄██▄▀█ ██
+█▄ ▀▄▄▄▄█▄▄ █  █  ▀▄██ ▀▀▀█▀ ▄ ▄▄█▀▄█ █  ▀▄▄██▄▀▄██▀ ██
+████▄██▄█ ▀▀▄▄ ▀▄▄▄▀ ▄▄ ▄ ▄▄▄ █  █▀█ █▀▄▀▄▀   ▄▄▄ ▀ ███
+█ ▄▄▄▄▄ ██▄ █▄▀█▀██ ▄▀█▀  █▄█ █  █  ▀▀█ █ ▄ █ █▄█ ▄█▄██
+█ █   █ █▀█▀▄▀▀███ █ ▀▀▀▀▄   ▄█▄▄█ █▀ ▀▀████▀▄ ▄▄ █  ▄█
+█ █▄▄▄█ █ █ ▀▄ ▄ ▄▄█▄█▀▄▄▀█▄ ▄▄▀  ██▀█▀██▄ ▄▀▀█▄▀▀▀▄ ██
+█▄▄▄▄▄▄▄█▄▄▄▄██▄█▄███▄▄███▄█▄████▄██▄██▄▄██▄██▄▄▄█▄█▄██
+
+Restart Required, Restarting...
+Connection Successful!
+Closing open session in favor of incoming prekey bundle
+Closing session: SessionEntry {
+  _chains: {
+    'Baaor5pyogGMUSrJypA6/TR8XKv6Ggf8OaVf9v2PDYk0': { chainKey: [Object], chainType: 1, messageKeys: {} }
+  },
+  registrationId: 1357846955,
+  currentRatchet: {
+    ephemeralKeyPair: {
+      pubKey: <Buffer 05 a6 a8 af 9a 72 a2 01 8c 51 2a c9 ca 90 3a fd 34 7c 5c ab fa 1a 07 fc 39 a5 5f f6 fd 8f 0d 89 34>,
+      privKey: <Buffer 50 52 cc c6 1d 37 d9 bb 62 fa ca 59 47 04 ef a2 b0 71 a3 05 b6 f7 71 36 bc 02 7e 3d 5d a6 a8 7c>
+    },
+    lastRemoteEphemeralKey: <Buffer 05 2d e1 83 9b d4 9c 4d 56 7a 1f df a2 fe 7b aa 59 48 4c de b2 2b 5f fa ad 5a 27 41 59 18 47 9a 34>,
+    previousCounter: 0,
+    rootKey: <Buffer fe 0e 0b b0 be ab 37 63 3e d9 28 c3 2d fb f4 aa d9 15 a1 7a b1 5e 52 f6 c6 77 e1 bc 5d a5 8a 48>
+  },
+  indexInfo: {
+    baseKey: <Buffer 05 dc 58 38 07 d3 9f ad 4b 6a 56 0e b6 fd 0c ad 53 9a b7 43 fa 97 d9 a6 df de 5d 6c 19 3c 63 0f 27>,
+    baseKeyType: 1,
+    closed: -1,
+    used: 1711442548298,
+    created: 1711442548298,
+    remoteIdentityKey: <Buffer 05 5b 1d f5 cb 47 ed 62 ae 70 73 53 9a b4 02 fc 66 07 19 72 85 b0 17 20 ad 78 4c 2e 8b 7d 44 d7 3c>
+  },
+  pendingPreKey: {
+    signedKeyId: 2,
+    baseKey: <Buffer 05 dc 58 38 07 d3 9f ad 4b 6a 56 0e b6 fd 0c ad 53 9a b7 43 fa 97 d9 a6 df de 5d 6c 19 3c 63 0f 27>,
+    preKeyId: 2809930
+  }
+}
+Message {
+  extendedTextMessage: ExtendedTextMessage { text: 'Connected Successfully' }
+}
+connected successfully
+Message {
+  protocolMessage: ProtocolMessage {
+    type: 5,
+    historySyncNotification: HistorySyncNotification {
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/v/t62.31111-24/11664189_403762145728394_2053775503006318999_n.enc?ccb=11-4&oh=01_AdSUratW1zjctKVsRFod5a6hMW1ezZtr4z6tR8W5fg7SbQ&oe=6629FF66&_nc_sid=5e03e0',
+      syncType: 3,
+      chunkOrder: 1,
+      progress: 8,
+      oldestMsgInChunkTimestampSec: [Long]
+    }
+  }
+}
+Message {
+  protocolMessage: ProtocolMessage {
+    type: 5,
+    historySyncNotification: HistorySyncNotification {
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/v/t62.31111-24/40780155_1025362659152678_4364032378887624985_n.enc?ccb=11-4&oh=01_AdQfY2L7iYQ0fL6AovJ2JVza46Vl6XNOgp2pOYtsdOnU4A&oe=6629FA2D&_nc_sid=5e03e0',
+      syncType: 3,
+      chunkOrder: 2,
+      progress: 17,
+      oldestMsgInChunkTimestampSec: [Long]
+    }
+  }
+}
+Message {
+  conversation: '/ping',
+  messageContextInfo: MessageContextInfo {
+    deviceListMetadata: DeviceListMetadata {
+      senderKeyIndexes: [],
+      recipientKeyIndexes: [],
+      recipientKeyHash: [Uint8Array],
+      recipientTimestamp: [Long]
+    },
+    deviceListMetadataVersion: 2
+  }
+}
+Message { extendedTextMessage: ExtendedTextMessage { text: 'pong.' } }
+pong.
+Message {
+  conversation: '/help',
+  messageContextInfo: MessageContextInfo {
+    deviceListMetadata: DeviceListMetadata {
+      senderKeyIndexes: [],
+      recipientKeyIndexes: [],
+      recipientKeyHash: [Uint8Array],
+      recipientTimestamp: [Long]
+    },
+    deviceListMetadataVersion: 2
+  }
+}
+Message {
+  extendedTextMessage: ExtendedTextMessage {
+    text: '╔════════\n' +
+      '╠══ *AlertBot@2023*\n' +
+      '╠ /help\n' +
+      '╠ /codeforces\n' +
+      '╠══ /codeforces register\n' +
+      '╠══ /codeforces list\n' +
+      "╠══ /codeforces get (don't use country code)\n" +
+      '╠══ /codeforces ranklist\n' +
+      '╠ /list\n' +
+      '╠ /setup <cName>\n' +
+      '╠ /debug <option>\n' +
+      '╠══ /debug jid\n' +
+      '╠══ /debug current\n' +
+      '╠ /manual <cName> <message>\n' +
+      '╠ /ping\n' +
+      '╠ /ssh\n' +
+      '╠ /unregister\n' +
+      '╠ /contact\n' +
+      '╠ /github\n' +
+      '╚════════'
+  }
+}
+╔════════
+╠══ *alertbot@2023*
+╠ /help
+╠ /codeforces
+╠══ /codeforces register
+╠══ /codeforces list
+╠══ /codeforces get (don't use country code)
+╠══ /codeforces ranklist
+╠ /list
+╠ /setup <cname>
+╠ /debug <option>
+╠══ /debug jid
+╠══ /debug current
+╠ /manual <cname> <message>
+╠ /ping
+╠ /ssh
+╠ /unregister
+╠ /contact
+╠ /github
+╚════════
+Message {
+  conversation: '/ssh',
+  messageContextInfo: MessageContextInfo {
+    deviceListMetadata: DeviceListMetadata {
+      senderKeyIndexes: [],
+      recipientKeyIndexes: [],
+      recipientKeyHash: [Uint8Array],
+      recipientTimestamp: [Long]
+    },
+    deviceListMetadataVersion: 2
+  }
+}
+D:\tmp\gh\ghh\AlertBot\plugins\commands\handleCommands.js:21
+  ip = await ip.text();
+  ^
+
+ReferenceError: ip is not defined
+    at getIp (D:\tmp\gh\ghh\AlertBot\plugins\commands\handleCommands.js:21:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async applicationLogic (D:\tmp\gh\ghh\AlertBot\plugins\commands\handleCommands.js:77:24)
+
+Node.js v21.6.2
+Exited with code 1Connection Successful!
+Connection Successful!
+Message {
+  protocolMessage: ProtocolMessage {
+    type: 5,
+    historySyncNotification: HistorySyncNotification {
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/v/t62.31111-24/11926156_293138223806278_5095790942798139304_n.enc?ccb=11-4&oh=01_AdSi7z_3LV5stqvn_SOJynspr1risZ72ig4LiMQBpZagag&oe=6629E847&_nc_sid=5e03e0',
+      syncType: 3,
+      chunkOrder: 4,
+      progress: 35,
+      oldestMsgInChunkTimestampSec: [Long]
+    }
+  }
+}
+Message {
+  conversation: '/ssh',
+  messageContextInfo: MessageContextInfo {
+    deviceListMetadata: DeviceListMetadata {
+      senderKeyIndexes: [],
+      recipientKeyIndexes: [],
+      recipientKeyHash: [Uint8Array],
+      recipientTimestamp: [Long]
+    },
+    deviceListMetadataVersion: 2
+  }
+}
+Message {
+  extendedTextMessage: ExtendedTextMessage { text: 'ssh u0_a343@116.74.33.243\n -p 8022' }
+}
+ssh u0_a343@116.74.33.243
+ -p 8022
+Connection Successful!
+Message {
+  protocolMessage: ProtocolMessage {
+    type: 5,
+    historySyncNotification: HistorySyncNotification {
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/v/t62.31111-24/21603242_7400493686707625_6510520202008043082_n.enc?ccb=11-4&oh=01_AdTupYYRLYwwdgrcFhZUXa68gEfNbqkD6XQivTb3i1g15w&oe=6629E844&_nc_sid=5e03e0',
+      syncType: 3,
+      chunkOrder: 5,
+      progress: 44,
+      oldestMsgInChunkTimestampSec: [Long]
+    }
+  }
+}
+Message {
+  protocolMessage: ProtocolMessage {
+    type: 5,
+    historySyncNotification: HistorySyncNotification {
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/v/t62.31111-24/19454364_729401525989213_4306405437778076640_n.enc?ccb=11-4&oh=01_AdSFJatTlVQqfF02cnKtAMSS70q4ucGqzAaOhyAv5mohbQ&oe=6629EA80&_nc_sid=5e03e0',
+      syncType: 3,
+      chunkOrder: 9,
+      progress: 80,
+      oldestMsgInChunkTimestampSec: [Long]
+    }
+  }
+}
+Message {
+  protocolMessage: ProtocolMessage {
+    type: 5,
+    historySyncNotification: HistorySyncNotification {
+      fileSha256: [Uint8Array],
+      fileLength: [Long],
+      mediaKey: [Uint8Array],
+      fileEncSha256: [Uint8Array],
+      directPath: '/v/t62.31111-24/20129368_427806383266760_4982177981219695293_n.enc?ccb=11-4&oh=01_AdSfASsvNTFhcy96o3jCUErB2LSacmxkKM-FaJK0Cm4gPg&oe=6629FE2C&_nc_sid=5e03e0',
+      syncType: 3,
+      chunkOrder: 11,
+      progress: 98,
+      oldestMsgInChunkTimestampSec: [Long]
+    }
+  }
+}
+Connection Successful!
+Message {
+  extendedTextMessage: ExtendedTextMessage { text: 'Connected Successfully' }
+}
+connected successfully
+Message { conversation: '/test' }
+/test
+Message {
+  extendedTextMessage: ExtendedTextMessage { text: 'Jinda Hu Bhai' }
+}
+jinda hu bhai
+Message {
+  conversation: '/ssh',
+  messageContextInfo: MessageContextInfo {
+    deviceListMetadata: DeviceListMetadata {
+      senderKeyIndexes: [],
+      recipientKeyIndexes: [],
+      recipientKeyHash: [Uint8Array],
+      recipientTimestamp: [Long]
+    },
+    deviceListMetadataVersion: 2
+  }
+}
+Message {
+  extendedTextMessage: ExtendedTextMessage { text: 'ssh meso@116.74.33.243\n' }
+}
+ssh meso@116.74.33.243
+
+null
+Message {
+  senderKeyDistributionMessage: SenderKeyDistributionMessage {
+    groupId: '120363144369027858@g.us',
+    axolotlSenderKeyDistributionMessage: Uint8Array(78) [
+       51,   8, 178, 134, 164, 183,   4,  16,   0,  26,  32, 167,
+      154, 132, 118, 178,  27,  20, 188,  64, 174, 255, 173, 220,
+       54, 239,  68, 212, 224, 180, 118,  82, 114,  56,  20, 250,
+      219, 141, 194, 220, 156, 236,  36,  34,  33,   5, 218, 151,
+      140,   9,  30, 109, 139, 116, 163, 195, 185,  57, 108, 132,
+       16, 155, 170, 109, 157, 246,  82,  31,  36, 184,  77,  28,
+      150, 213,  93,  66, 205,  25
+    ]
+  },
+  messageContextInfo: MessageContextInfo {
+    deviceListMetadata: DeviceListMetadata {
+      senderKeyIndexes: [],
+      recipientKeyIndexes: [],
+      senderKeyHash: [Uint8Array],
+      senderTimestamp: [Long],
+      recipientKeyHash: [Uint8Array],
+      recipientTimestamp: [Long]
+    },
+    deviceListMetadataVersion: 2
+  },
+  reactionMessage: ReactionMessage {
+    key: MessageKey {
+      remoteJid: '120363144369027858@g.us',
+      fromMe: false,
+      id: '39F4ABE11CB7E63D0B',
+      participant: '919811300823@s.whatsapp.net'
+    },
+    text: '🙄',
+    senderTimestampMs: Long { low: 2046135455, high: 398, unsigned: false }
+  }
+}
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Lost from Server, reconnecting...
+Connection Successful!
+Message {
+  extendedTextMessage: ExtendedTextMessage { text: 'Connected Successfully' }
+}
+connected successfully
+undefined

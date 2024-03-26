@@ -13,8 +13,9 @@ const checkAndParse = async (body) => {
 };
 
 const getIp = async () => {
+  let ip;
   try {
-    let ip = await fetch("https://checkip.amazonaws.com/");
+    ip = await fetch("https://checkip.amazonaws.com/");
   } catch (err) {
     console.log("Fetch Failed!");
   }
@@ -55,9 +56,25 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
       console.log(body);
       if((await checkAndParse(body))){
         const {command, args} = await checkAndParse(body);
-        if (command=="test"){
-          await replyM(senderJid, "Jinda Hu Bhai");
-          return;
+        switch(command){
+          case "test":
+            await replyM(senderJid, "Jinda Hu Bhai");
+            return;
+            break;
+          case "tagall":
+              if (!checkPriv(senderJid)) {
+                await replyM(grpId, "you don't have enough privileges.");
+                break;
+              }
+              const participants = await groupMetadata.participants;
+              // console.log(participants);
+              // console.log(participants.map(a => a.id));
+              await ws.sendMessage(grpId, {
+                text: "*Everyone!*",
+                mentions: participants.map((a) => a.id),
+              });
+              return;
+              break;
         }
       }
     }
@@ -75,7 +92,7 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
           case "ssh":
             if (!checkPriv(senderJid)) break;
             const ip = await getIp();
-            await replyM(senderJid, `ssh u0_a343@${ip} -p 8022`);
+            await replyM(senderJid, `ssh meso@${ip}`);
             break;
           case "help":
             let helpTxt = `╔════════

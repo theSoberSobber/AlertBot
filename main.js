@@ -72,7 +72,9 @@ async function startBot() {
         }
       } catch (e) {
         console.log("Restarting!");
-        startBot();
+        console.log(e);
+        // startBot();
+        throw new Error("Restarting the Bot!");
       }
     });
     // _______________________________________________________________
@@ -82,12 +84,14 @@ async function startBot() {
         require("./plugins/commands/handleCommands.js")(ws, chatUpdate);
       } catch (err) {
         console.log(err);
+        // throw new Error("Error in Handling the Command!");
       }
     });
 
   } catch (e) {
     console.log(e);
-    startBot();
+    // startBot();
+    throw new Error("Error, restarting!");
   }
 }
 

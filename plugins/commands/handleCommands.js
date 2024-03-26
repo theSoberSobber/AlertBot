@@ -80,9 +80,10 @@ module.exports = applicationLogic = async (ws, chatUpdate) => {
     }
   }
   if (!fromMe) {
-    if (messageObj?.conversation) {
+    if (messageObj?.conversation || messageObj?.extendedTextMessage?.text) {
       // normal text
-      let body = messageObj.conversation.toLowerCase();
+      let body = messageObj?.conversation ? messageObj?.conversation?.toLowerCase() : messageObj?.extendedTextMessage?.text?.toLowerCase();
+      console.log(body);
       if ((await checkAndParse(body)) && !isGrp) {
         const { command, args } = await checkAndParse(body);
         switch (command) {
